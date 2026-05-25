@@ -12,7 +12,7 @@
     <link href="https://framerusercontent.com/images/V0oSRtUGLwsVTiHx5hgqNWKzH0.png" rel="icon" media="(prefers-color-scheme: light)">
     <link href="https://framerusercontent.com/images/qJPtWmOJ7d4VFE10TAqJyefhXPc.png" rel="icon" media="(prefers-color-scheme: dark)">
     <link rel="apple-touch-icon" href="https://framerusercontent.com/images/8wvGyBMKxeBR9aFkcG6aNSlmqSk.png">
-    <link rel="stylesheet" href="./styles.css?v=23">
+    <link rel="stylesheet" href="./styles.css?v=55">
   </head>
   <body>
     <header class="site-header component-navigation">
@@ -20,27 +20,46 @@
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
       <nav id="site-nav" class="site-nav">
         <a href="./curriculum.html">Curriculum</a>
-        <a href="./index.html#about">About</a>
+        <a href="./about.html">About</a>
+        <a class="nav-cta" href="./drawing-field-kit.html">Buy Kit</a>
       </nav>
     </header>
 
-    <main class="download-landing component-download">
+    <main class="download-landing sample-onboarding component-download">
       <section class="download-hero">
-        <h1>Thank you for your interest! We hope you enjoy your free lesson.</h1>
+        <div class="download-copy">
+          <p class="eyebrow">Your free lesson is ready</p>
+          <h1>Download it, print it, and try one 30-minute drawing lesson.</h1>
+          <p>This sample works best when the student worksheet and support guide stay side by side. The student draws on one page while the parent uses the other page for examples and prompts.</p>
+          <div class="download-actions">
+            <a class="button component-button framer-yellow download-now" href="https://drive.google.com/file/d/1HIbTmO1dkqhl8ccpo3dX8eJzyJi9uR8I/view?usp=sharing" target="_blank" rel="noopener">Download Lesson <svg class="download-icon framer-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M 14 11 L 14 14 L 2 14 L 2 11 L 0 11 L 0 14 C 0 15.1 0.9 16 2 16 L 14 16 C 15.1 16 16 15.1 16 14 L 16 11 Z M 13 7 L 11.59 5.59 L 9 8.17 L 9 0 L 7 0 L 7 8.17 L 4.41 5.59 L 3 7 L 8 12 Z" fill="currentColor" transform="translate(4 4)"></path></svg></a>
+            <a class="button component-button secondary" href="./start-here.html">Read Start Here</a>
+          </div>
+        </div>
         <video class="download-brand-video" src="./assets/thank-you.mp4" poster="https://framerusercontent.com/images/AkGPApyptheLNUlSnVoWIkdzYI.png?width=1344&height=768" autoplay muted loop playsinline aria-label="Torch & Trowel thank-you animation"></video>
-        <a class="button component-button framer-yellow download-now" href="https://drive.google.com/file/d/1HIbTmO1dkqhl8ccpo3dX8eJzyJi9uR8I/view?usp=sharing" target="_blank" rel="noopener">Download <svg class="download-icon framer-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M 14 11 L 14 14 L 2 14 L 2 11 L 0 11 L 0 14 C 0 15.1 0.9 16 2 16 L 14 16 C 15.1 16 16 15.1 16 14 L 16 11 Z M 13 7 L 11.59 5.59 L 9 8.17 L 9 0 L 7 0 L 7 8.17 L 4.41 5.59 L 3 7 L 8 12 Z" fill="currentColor" transform="translate(4 4)"></path></svg></a>
       </section>
 
       <section class="next-steps component-next-steps">
         <div>
-          <p class="eyebrow">Start here</p>
-          <h2>Print the lesson, then work directly on the pages.</h2>
+          <p class="eyebrow">Use it today</p>
+          <h2>Do these three things before you start.</h2>
+          <a class="text-link" href="./start-here.html">Read the parent guide -></a>
         </div>
         <ol>
-          <li><span><strong>Download and print</strong> the included student and support pages.</span></li>
-          <li><span><strong>Grab a wooden pencil</strong> and an eraser. No extra drawing paper is needed for the sample.</span></li>
-          <li><span><strong>Use the pages side by side</strong> so the worksheet gives the student space to draw while the support guide shows examples, tips, and notes.</span></li>
+          <li><span><strong>Print both page types.</strong> The student worksheet is for drawing. The support guide is for parent help.</span></li>
+          <li><span><strong>Use a pencil and eraser.</strong> No tablet, ruler, extra drawing paper, or special supply run is needed.</span></li>
+          <li><span><strong>Set a 30-minute window.</strong> Keep the goal small: try the rhythm, notice what helps, and let the student work.</span></li>
         </ol>
+      </section>
+
+      <section class="sample-today">
+        <p class="eyebrow">During the lesson</p>
+        <h2>Keep correction light and momentum high.</h2>
+        <div class="sample-today-grid">
+          <article><h3>If your student gets stuck</h3><p>Look at the matching support guide, choose one prompt or example, then return attention to the worksheet.</p></article>
+          <article><h3>If the drawing feels messy</h3><p>That is normal. This lesson is training pencil control and attention, not producing a perfect finished artwork.</p></article>
+          <article><h3>If they finish quickly</h3><p>Pick one exercise box and repeat it more slowly. Repetition is where the skill starts to show up.</p></article>
+        </div>
       </section>
 
       <section class="sample-guide component-sample-guide">
@@ -51,12 +70,16 @@
         </div>
         <div class="sample-guide-cards">
           <article>
-            <img src="./assets/dr101-c-student-worksheet-lines-lesson-i.jpg" width="695" height="900" alt="DR101-C Student Worksheet for Lines Lesson I">
+            <button class="preview-trigger" type="button" data-preview-src="./assets/dr101-c-student-worksheet-lines-lesson-i.jpg" data-preview-title="Student Worksheet" data-preview-pair="sample-download-proof" aria-label="Open larger paired preview of the student worksheet and support guide">
+              <img src="./assets/dr101-c-student-worksheet-lines-lesson-i.jpg" width="695" height="900" alt="DR101-C Student Worksheet for Lines Lesson I">
+            </button>
             <span>Student Worksheet</span>
             <h3>The page your student draws on.</h3>
           </article>
           <article>
-            <img src="./assets/dr101-b-support-guide-lines-lesson-i.jpg" width="695" height="900" alt="DR101-B Support Guide for Lines Lesson I">
+            <button class="preview-trigger" type="button" data-preview-src="./assets/dr101-b-support-guide-lines-lesson-i.jpg" data-preview-title="Support Guide" data-preview-pair="sample-download-proof" aria-label="Open larger paired preview of the support guide and student worksheet">
+              <img src="./assets/dr101-b-support-guide-lines-lesson-i.jpg" width="695" height="900" alt="DR101-B Support Guide for Lines Lesson I">
+            </button>
             <span>Support Guide</span>
             <h3>The matching helper page with examples and tips.</h3>
           </article>
@@ -66,18 +89,18 @@
       <section class="sample-offer component-offer-card">
         <img src="https://framerusercontent.com/images/N1lMD65868zjUlD1sNQk2LdqBA.png?scale-down-to=1024&width=829&height=1179" alt="Drawing Field Kit Vol. 1">
         <div>
-          <p class="eyebrow">Want the complete kit?</p>
-          <h2>Drawing Field Kit Vol. 1</h2>
-          <p>Six units, 4 lessons per unit, optional extra practice, and a printer-friendly screen-free drawing path for middle and high school students.</p>
+          <p class="eyebrow">After you try it</p>
+          <h2>If this rhythm works, the full kit gives you the path.</h2>
+          <p>Drawing Field Kit Vol. 1 includes six units, four lessons per unit, optional extra practice, and a printer-friendly screen-free drawing sequence for middle and high school students.</p>
           <ul class="check-list">
             <li>Unit overviews for parents</li>
             <li>Student worksheets plus mirrored support guides</li>
             <li>Badge collector and reflect-and-collect wrap ups</li>
           </ul>
-          <a class="button component-button buy" href="https://buy.stripe.com/eVqcN55lsbK2bPCaZggrS00" rel="noopener">Buy the Full Kit Today! <svg class="external-icon framer-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M 7 17 L 17 7 M 9 7 L 17 7 L 17 15" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></a>
+          <a class="button component-button buy" href="./drawing-field-kit.html">See the Full Kit <svg class="external-icon framer-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M 7 17 L 17 7 M 9 7 L 17 7 L 17 15" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></a>
         </div>
       </section>
     </main>
-    <script src="./script.js?v=23"></script>
+    <script src="./script.js?v=55"></script>
   </body>
 </html>

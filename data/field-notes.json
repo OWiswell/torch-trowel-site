@@ -1,0 +1,107 @@
+{
+  "featured": "student-says-cant-draw",
+  "posts": [
+    {
+      "id": "student-says-cant-draw",
+      "title": "When a student says, “I can’t draw.”",
+      "category": "Parent prompt",
+      "readTime": "3 min use",
+      "image": "./assets/field-notes/checklist.png",
+      "imageAlt": "Checklist illustration from Torch and Trowel",
+      "excerpt": "Treat “I can’t draw” as a signal that the task feels too big. Shrink the next move until the student can begin again.",
+      "when": "Use this when a student freezes, wants you to judge the whole drawing, or starts comparing their page to someone else’s.",
+      "tryThis": [
+        "Cover part of the page with your hand or another sheet of paper.",
+        "Choose one small area: one line, one box, one edge, or one shape.",
+        "Ask the student to make only that part a little clearer."
+      ],
+      "why": "A stuck student usually needs a smaller decision, not a bigger explanation. Narrowing the task lowers pressure and returns attention to observation.",
+      "script": "“Let’s not decide if the whole drawing is good. Point to one line you can make more intentional.”"
+    },
+    {
+      "id": "rushing-through-boxes",
+      "title": "When the worksheet gets rushed.",
+      "category": "Lesson reset",
+      "readTime": "4 min use",
+      "image": "./assets/field-notes/loose-contour-lines.png",
+      "imageAlt": "Loose contour line drawing example",
+      "excerpt": "Finishing every box quickly is not the same as practicing. Use one repeated box to slow the lesson down without making it feel like punishment.",
+      "when": "Use this when a student fills the page fast, scribbles through the prompts, or tries to be done before they have looked carefully.",
+      "tryThis": [
+        "Pick one box that already exists on the worksheet.",
+        "Have the student repeat only that box slowly beside it or on the back of the page.",
+        "Compare the fast version and the slow version without scolding."
+      ],
+      "why": "A single repeated box preserves momentum while making attention visible. The student can see the difference between speed and control.",
+      "script": "“You finished the page. Now let’s choose one box and make a slower version so your hand can catch up with your eyes.”"
+    },
+    {
+      "id": "parent-hovering",
+      "title": "How to help without hovering.",
+      "category": "Support guide",
+      "readTime": "3 min use",
+      "image": "./assets/field-notes/technique-tips.png",
+      "imageAlt": "Technique tips illustration from Torch and Trowel",
+      "excerpt": "The support guide should help you notice what to say next, not turn you into a constant commentator.",
+      "when": "Use this when you find yourself correcting every mark, explaining too much, or sitting beside the student longer than the lesson needs.",
+      "tryThis": [
+        "Check the support guide before the student begins.",
+        "Choose one thing you will watch for during the lesson.",
+        "Wait until the student asks or reaches a natural pause before offering help."
+      ],
+      "why": "Students need room to make decisions. A parent’s job is to redirect attention, not narrate every mark on the page.",
+      "script": "“I’m going to let you work for a few minutes. If you get stuck, I’ll help you look at the guide.”"
+    },
+    {
+      "id": "no-rulers-no-panic",
+      "title": "Why the early lessons do not need rulers.",
+      "category": "Method note",
+      "readTime": "2 min use",
+      "image": "./assets/field-notes/no-rulers.png",
+      "imageAlt": "No rulers drawing reminder",
+      "excerpt": "A ruler can make a line straight, but it cannot teach the student to control pressure, direction, rhythm, or confidence.",
+      "when": "Use this when a student wants a tool to make the page look cleaner before they have practiced hand control.",
+      "tryThis": [
+        "Ask for a slow hand-drawn line instead of a perfect line.",
+        "Have the student draw the same kind of line three times.",
+        "Look for steadier pressure, not mechanical straightness."
+      ],
+      "why": "Early drawing practice is about hand, eye, and attention working together. Slightly imperfect lines are useful evidence.",
+      "script": "“The goal is not a machine-straight line. The goal is a line your hand meant to make.”"
+    },
+    {
+      "id": "ellipses-look-strange",
+      "title": "When circles on cups look wrong.",
+      "category": "Common snag",
+      "readTime": "4 min use",
+      "image": "./assets/field-notes/mug-ellipses.png",
+      "imageAlt": "Mug ellipse drawing example",
+      "excerpt": "Openings on cups, bowls, and jars often look odd because students draw the symbol of a circle instead of the shape they actually see.",
+      "when": "Use this when a student’s cup opening turns into a flat football, a pointed eye shape, or a circle that ignores the angle of the object.",
+      "tryThis": [
+        "Have the student trace the air above the opening with a finger.",
+        "Ask which side of the ellipse feels wider, flatter, or more open.",
+        "Draw the ellipse lightly two or three times before darkening one version."
+      ],
+      "why": "Ellipses improve when students observe the angle and width of the opening instead of relying on a memorized circle shape.",
+      "script": "“Do not draw the idea of a circle. Look at the opening and draw the shape it is making from where you sit.”"
+    },
+    {
+      "id": "shapes-before-forms",
+      "title": "Shapes before forms.",
+      "category": "Teaching concept",
+      "readTime": "3 min use",
+      "image": "./assets/field-notes/shapes-forms.png",
+      "imageAlt": "Shape to form drawing example",
+      "excerpt": "Students draw objects better when they first learn to find simple flat shapes, then build those shapes into forms.",
+      "when": "Use this when a student wants to draw a complicated object all at once and gets lost in details.",
+      "tryThis": [
+        "Ask the student to find the largest simple shape first.",
+        "Ignore texture and small details for one pass.",
+        "Add form only after the basic shape relationship is clear."
+      ],
+      "why": "Simple shapes reduce visual overwhelm. Once the big shapes are placed, form and detail have somewhere to belong.",
+      "script": "“Before we draw the object, let’s find the simple shape hiding inside it.”"
+    }
+  ]
+}

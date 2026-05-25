@@ -10,7 +10,7 @@
     <link href="https://framerusercontent.com/images/V0oSRtUGLwsVTiHx5hgqNWKzH0.png" rel="icon" media="(prefers-color-scheme: light)">
     <link href="https://framerusercontent.com/images/qJPtWmOJ7d4VFE10TAqJyefhXPc.png" rel="icon" media="(prefers-color-scheme: dark)">
     <link rel="apple-touch-icon" href="https://framerusercontent.com/images/8wvGyBMKxeBR9aFkcG6aNSlmqSk.png">
-    <link rel="stylesheet" href="./styles.css?v=23">
+    <link rel="stylesheet" href="./styles.css?v=55">
   </head>
   <body>
     <header class="site-header component-navigation">
@@ -22,7 +22,7 @@
       </button>
       <nav id="site-nav" class="site-nav">
         <a href="./curriculum.html">Curriculum</a>
-        <a href="#about">About</a>
+        <a href="./about.html">About</a>
         <a class="nav-cta" href="./free-drawing-lesson.html">Free Lesson!</a>
       </nav>
     </header>
@@ -38,7 +38,67 @@
         <p class="hero-text">Print-ready Field Kits guide students from first line to finished sketch in 30 minutes, using only pencils and paper.</p>
         <div class="button-row">
           <a class="button component-button primary" href="#sign-up-kit">Try a Free Lesson</a>
-          <a class="button component-button secondary" href="./curriculum.html">See how it works</a>
+          <a class="button component-button secondary" href="#how-one-lesson-works">See how it works</a>
+        </div>
+      </section>
+
+      <section class="home-proof-strip component-proof-strip" aria-label="What Torch and Trowel is">
+        <div><strong>Printable</strong><span>drawing lessons</span></div>
+        <div><strong>2</strong><span>page types</span></div>
+        <div><strong>0</strong><span>screens required</span></div>
+        <div><strong>30</strong><span>minute start</span></div>
+      </section>
+
+      <section id="how-one-lesson-works" class="use-walkthrough component-use-walkthrough">
+        <div class="walkthrough-copy">
+          <p class="eyebrow">How one lesson works</p>
+          <h2>Print the lesson. Use the guide. Let the drawing happen.</h2>
+          <p>The Field Kit is built around a simple back-and-forth rhythm: the student works on a clean page, and the parent uses the matching support page when guidance is needed.</p>
+        </div>
+        <div class="walkthrough-steps" aria-label="How one lesson works">
+          <article>
+            <span>1</span>
+            <h3>Print the student page</h3>
+            <p>Your student draws directly on the worksheet. No app, video, or separate sketchbook setup.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Check the support guide</h3>
+            <p>The guide mirrors the worksheet with examples, prompts, and technique notes for the parent.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Return to the drawing</h3>
+            <p>Use the guide only when it helps, then let the student keep working independently.</p>
+          </article>
+        </div>
+        <div class="walkthrough-actions">
+          <a class="button component-button primary" href="./free-drawing-lesson.html">Try a lesson free</a>
+          <a class="button component-button secondary" href="#lesson-pairing-home">Preview the sample pages</a>
+        </div>
+      </section>
+
+      <section id="lesson-pairing-home" class="home-sample-pair lesson-proof component-sample-guide">
+        <div class="lesson-proof-copy">
+          <p class="eyebrow">Student page plus support guide</p>
+          <h2>One page is for drawing. One page is for guidance.</h2>
+          <p>The student worksheet stays clean and focused. The support guide carries the examples, prompts, and reminders so parents can help without guessing.</p>
+        </div>
+        <div class="sample-guide-cards">
+          <article>
+            <button class="preview-trigger" type="button" data-preview-src="./assets/dr101-c-student-worksheet-lines-lesson-i.jpg" data-preview-title="Student Worksheet" data-preview-pair="home-lesson-proof" aria-label="Open larger paired preview of the student worksheet and support guide">
+              <img src="./assets/dr101-c-student-worksheet-lines-lesson-i.jpg" width="695" height="900" alt="DR101-C Student Worksheet for Lines Lesson I">
+            </button>
+            <span>Student Worksheet</span>
+            <h3>The page your student works on.</h3>
+          </article>
+          <article>
+            <button class="preview-trigger" type="button" data-preview-src="./assets/dr101-b-support-guide-lines-lesson-i.jpg" data-preview-title="Support Guide" data-preview-pair="home-lesson-proof" aria-label="Open larger paired preview of the support guide and student worksheet">
+              <img src="./assets/dr101-b-support-guide-lines-lesson-i.jpg" width="695" height="900" alt="DR101-B Support Guide for Lines Lesson I">
+            </button>
+            <span>Support Guide</span>
+            <h3>The page that helps you guide.</h3>
+          </article>
         </div>
       </section>
 
@@ -98,7 +158,7 @@
             </div>
             <p>Low cost, screen-free, and easy to use with just a pencil and paper.</p>
           </div>
-          <a class="button component-button buy" href="https://buy.stripe.com/eVqcN55lsbK2bPCaZggrS00" rel="noopener">Buy the Full Kit Today! <svg class="external-icon framer-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M 7 17 L 17 7 M 9 7 L 17 7 L 17 15" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></a>
+          <a class="button component-button buy" href="./drawing-field-kit.html">See the Full Kit <svg class="external-icon framer-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M 7 17 L 17 7 M 9 7 L 17 7 L 17 15" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></a>
           <a class="button component-button download" href="#sign-up-kit">Try the first unit FREE <svg class="download-icon framer-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M 14 11 L 14 14 L 2 14 L 2 11 L 0 11 L 0 14 C 0 15.1 0.9 16 2 16 L 14 16 C 15.1 16 16 15.1 16 14 L 16 11 Z M 13 7 L 11.59 5.59 L 9 8.17 L 9 0 L 7 0 L 7 8.17 L 4.41 5.59 L 3 7 L 8 12 Z" fill="currentColor" transform="translate(4 4)"></path></svg></a>
         </div>
       </section>
@@ -108,13 +168,14 @@
         <div>
           <h2>Matt Tolbert</h2>
           <p class="gold-line">Founder, Artist, Educator, Homeschool Dad</p>
-          <p>I created Torch & Trowel to give parents a clear, low-stress path to real drawing development. Each screen-free Field Kit is simple, structured, and printer-ready-guiding kids toward focus, confidence, and lasting skill with nothing more than pencil and paper. It's the resource I wished for when I first began teaching.</p>
+          <p>I created Torch & Trowel to give parents a clear, low-stress path to real drawing development. My background in illustration, classroom teaching, homeschool parenting, and product design shapes every Field Kit.</p>
           <div class="credentials">
             <span>Homeschool<br>Dad of 3</span>
             <span>High School Art<br>Teacher (15 years)</span>
             <span>University Adjunct<br>Instructor (9 years)</span>
             <span>MFA in<br>Illustration</span>
           </div>
+          <a class="founder-link" href="./about.html">Read more about the curriculum and founder →</a>
         </div>
       </section>
 
@@ -170,7 +231,9 @@
       <img src="https://framerusercontent.com/images/Zo1LkQrlxiSEKujTSfp3CSWoc.png?scale-down-to=512&width=649&height=70" alt="Torch & Trowel">
       <nav>
         <a href="./curriculum.html">Curriculum</a>
-        <a href="#about">About Us</a>
+        <a href="./drawing-field-kit.html">Buy Kit</a>
+        <a href="./start-here.html">Start Here</a>
+        <a href="./about.html">About Us</a>
         <a href="mailto:matt@torchandtrowel.com">Contact</a>
         <a href="./policies.html#privacy">Privacy</a>
         <a href="./policies.html#tos">Terms</a>
@@ -178,6 +241,6 @@
         <a href="./free-drawing-lesson.html">Get a Free Lesson!</a>
       </nav>
     </footer>
-    <script src="./script.js?v=23"></script>
+    <script src="./script.js?v=55"></script>
   </body>
 </html>
