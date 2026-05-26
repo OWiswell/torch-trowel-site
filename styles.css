@@ -1462,21 +1462,37 @@ p {
   padding: 34px;
 }
 
-.comparison-takeaways {
+.comparison-takeaways,
+.decision-frame {
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 24px;
 }
 
-.comparison-takeaways article {
+.comparison-takeaways article,
+.decision-frame article {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(184, 155, 54, 0.36);
   border-radius: 8px;
   padding: 16px;
 }
 
-.comparison-takeaways span {
+.decision-frame article {
+  display: grid;
+  gap: 8px;
+  position: relative;
+}
+
+.decision-frame article.is-choice {
+  background: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 0 16px 32px rgba(16, 24, 35, 0.18);
+  color: var(--white);
+}
+
+.comparison-takeaways span,
+.decision-frame span {
   color: var(--gold);
   display: block;
   font-size: 11px;
@@ -1485,12 +1501,61 @@ p {
   text-transform: uppercase;
 }
 
-.comparison-takeaways strong {
+.decision-frame article.is-choice span {
+  color: var(--gold-bright);
+}
+
+.comparison-takeaways strong,
+.decision-frame strong {
   color: var(--ink);
   display: block;
   font-family: var(--font-serif);
   font-size: 21px;
   line-height: 1.08;
+}
+
+.decision-frame p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.decision-frame article.is-choice strong,
+.decision-frame article.is-choice p {
+  color: var(--white);
+}
+
+.decision-frame .button {
+  font-size: 16px;
+  justify-self: start;
+  margin-top: 6px;
+  min-height: 44px;
+  min-width: 0;
+  padding: 10px 16px;
+}
+
+.comparison-verdict {
+  align-items: start;
+  background: rgba(255, 223, 31, 0.24);
+  border: 1px solid rgba(184, 155, 54, 0.42);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1fr);
+  margin-top: 14px;
+  padding: 16px;
+}
+
+.comparison-verdict strong {
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.comparison-verdict span {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .comparison-table-wrap {
@@ -1539,13 +1604,20 @@ p {
 }
 
 .comparison-table tr.is-recommended {
-  background: rgba(255, 223, 31, 0.2);
-  box-shadow: inset 5px 0 0 var(--gold-bright);
+  background: rgba(255, 223, 31, 0.26);
+  box-shadow:
+    inset 6px 0 0 var(--gold-bright),
+    inset 0 1px 0 rgba(184, 155, 54, 0.36),
+    inset 0 -1px 0 rgba(184, 155, 54, 0.36);
 }
 
 .comparison-table tr.is-recommended th,
 .comparison-table tr.is-recommended td {
   border-bottom-color: rgba(184, 155, 54, 0.5);
+}
+
+.comparison-table tr.is-recommended th {
+  font-size: 17px;
 }
 
 .recommended-badge {
@@ -4284,6 +4356,7 @@ body.preview-open {
   .sample-onboarding .download-hero,
   .sample-today-grid,
   .sample-path-grid,
+  .decision-frame,
   .principle-grid,
   .roadmap-grid,
   .credibility-grid,
@@ -4308,6 +4381,7 @@ body.preview-open {
   .sample-guide,
   .sample-guide-cards,
   .sample-comparison-row,
+  .comparison-verdict,
   .buyer-question-banner,
   .guide-hero,
   .guide-problem-grid,
