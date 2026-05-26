@@ -3919,6 +3919,7 @@ body.preview-open {
 .after-download-copy h2,
 .parent-fit h2,
 .sales-units h2,
+.purchase-clarity-copy h2,
 .final-cta h2 {
   font-size: 38px;
 }
@@ -4029,6 +4030,64 @@ body.preview-open {
   font-size: 14px;
   font-weight: 900;
   margin-top: 12px;
+}
+
+.purchase-clarity {
+  background: var(--ink);
+  border-radius: 8px;
+  color: var(--white);
+  display: grid;
+  gap: 24px;
+  padding: 34px;
+}
+
+.purchase-clarity-copy {
+  max-width: 760px;
+}
+
+.purchase-clarity .eyebrow {
+  color: var(--gold-bright);
+}
+
+.purchase-clarity-copy h2 {
+  color: var(--white);
+  font-size: 38px;
+  line-height: 1.08;
+  margin-top: 4px;
+}
+
+.purchase-clarity-copy p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 18px;
+  line-height: 1.45;
+  margin-top: 12px;
+}
+
+.purchase-clarity-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.purchase-clarity-grid article {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  display: grid;
+  gap: 7px;
+  padding: 16px;
+}
+
+.purchase-clarity-grid strong {
+  color: var(--gold-bright);
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.purchase-clarity-grid span {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  line-height: 1.38;
 }
 
 .final-cta {
@@ -4556,6 +4615,7 @@ body.preview-open {
   .walkthrough-steps,
   .parent-fit-grid,
   .purchase-details,
+  .purchase-clarity-grid,
   .kit-flow-grid,
   .faq-grid,
   .include-grid {
@@ -4664,6 +4724,7 @@ body.preview-open {
   .after-download-copy h2,
   .parent-fit h2,
   .sales-units h2,
+  .purchase-clarity-copy h2,
   .final-cta h2 {
     font-size: 28px;
   }
