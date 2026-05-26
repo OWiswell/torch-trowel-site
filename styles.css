@@ -363,6 +363,68 @@ p {
   text-transform: uppercase;
 }
 
+.principle-strip {
+  margin: 0 auto 78px;
+  max-width: var(--max);
+  padding: 0 16px;
+}
+
+.principle-strip-inner {
+  background: var(--paper);
+  border: 1px solid rgba(184, 155, 54, 0.34);
+  border-radius: 8px;
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+}
+
+.principle-strip-copy {
+  display: grid;
+  gap: 8px;
+  max-width: 760px;
+}
+
+.principle-strip-copy h2 {
+  color: var(--ink);
+  font-size: 34px;
+  line-height: 1.08;
+}
+
+.principle-strip-copy p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.principle-strip-list {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.principle-strip-list article {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(63, 70, 78, 0.08);
+  border-radius: 8px;
+  display: grid;
+  gap: 6px;
+  padding: 15px;
+}
+
+.principle-strip-list h3 {
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.12;
+}
+
+.principle-strip-list p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
 .buyer-question-banner {
   align-items: center;
   background: var(--paper);
@@ -4357,6 +4419,7 @@ body.preview-open {
   .sample-today-grid,
   .sample-path-grid,
   .decision-frame,
+  .principle-strip-list,
   .principle-grid,
   .roadmap-grid,
   .credibility-grid,
@@ -4398,6 +4461,14 @@ body.preview-open {
   .faq-grid,
   .include-grid {
     grid-template-columns: 1fr;
+  }
+
+  .principle-strip {
+    margin-bottom: 58px;
+  }
+
+  .principle-strip-inner {
+    padding: 22px;
   }
 
   .free-preview-pages.free-preview-packet {
@@ -4466,6 +4537,7 @@ body.preview-open {
   .sample-guide h2,
   .sample-path-heading h2,
   .sample-comparison-copy h2,
+  .principle-strip-copy h2,
   .buyer-question-banner h2,
   .guide-hero h1,
   .guide-problem h2,
