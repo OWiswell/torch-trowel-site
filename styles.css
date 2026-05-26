@@ -363,6 +363,37 @@ p {
   text-transform: uppercase;
 }
 
+.buyer-question-banner {
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid rgba(184, 155, 54, 0.36);
+  border-radius: 8px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: -34px auto 76px;
+  max-width: var(--max);
+  padding: 26px 30px;
+}
+
+.buyer-question-banner h2 {
+  font-size: 30px;
+  margin-top: 4px;
+}
+
+.buyer-question-banner p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.45;
+  margin-top: 8px;
+  max-width: 650px;
+}
+
+.buyer-question-banner .button {
+  min-height: 52px;
+  white-space: nowrap;
+}
+
 .button {
   align-items: center;
   border: 0;
@@ -1307,6 +1338,237 @@ p {
 
 .about-cta .sales-actions {
   justify-content: center;
+}
+
+.guide-page {
+  padding: 46px 0 100px;
+}
+
+.guide-hero,
+.guide-problem,
+.comparison-section,
+.fit-section,
+.risk-cost-section,
+.guide-recommendation {
+  margin: 0 auto 78px;
+  max-width: var(--max);
+  padding: 0 16px;
+}
+
+.guide-hero {
+  align-items: center;
+  display: grid;
+  gap: 42px;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  margin-top: 42px;
+}
+
+.guide-hero h1 {
+  font-size: 50px;
+  max-width: 730px;
+}
+
+.guide-hero p:not(.eyebrow),
+.guide-problem > p:not(.eyebrow),
+.comparison-heading p,
+.guide-recommendation p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 14px;
+  max-width: 720px;
+}
+
+.guide-answer-card {
+  background: var(--paper);
+  border: 1px solid rgba(184, 155, 54, 0.42);
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+}
+
+.guide-answer-card strong {
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.guide-answer-card p {
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.12;
+}
+
+.guide-answer-card a,
+.trust-link {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.guide-problem h2,
+.comparison-heading h2,
+.risk-cost-section h2,
+.guide-recommendation h2 {
+  font-size: 40px;
+  margin-top: 4px;
+  max-width: 760px;
+}
+
+.guide-problem-grid,
+.risk-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.risk-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.guide-problem-grid article,
+.risk-grid article {
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.guide-problem-grid h3,
+.risk-grid h3 {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.guide-problem-grid p,
+.risk-grid p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.comparison-section {
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 34px;
+}
+
+.comparison-table-wrap {
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.comparison-table {
+  border-collapse: collapse;
+  min-width: 840px;
+  width: 100%;
+}
+
+.comparison-table th,
+.comparison-table td {
+  border-bottom: 1px solid rgba(184, 155, 54, 0.32);
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 14px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.comparison-table thead th {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.comparison-table tbody th {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 900;
+  width: 18%;
+}
+
+.comparison-table td {
+  color: var(--muted);
+}
+
+.comparison-table tr.is-recommended {
+  background: rgba(255, 223, 31, 0.18);
+}
+
+.fit-section {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fit-card {
+  background: var(--paper);
+  border: 1px solid rgba(184, 155, 54, 0.42);
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.fit-card-muted {
+  background: #fafaf8;
+}
+
+.fit-card h2 {
+  font-size: 30px;
+  margin: 4px 0 18px;
+}
+
+.check-list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.check-list li {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.4;
+  padding-left: 26px;
+  position: relative;
+}
+
+.check-list li::before {
+  color: var(--gold);
+  content: "✓";
+  font-weight: 900;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.guide-recommendation {
+  align-items: center;
+  background: var(--paper);
+  border-radius: 8px;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  margin-bottom: 0;
+  padding: 34px;
+}
+
+.guide-recommendation-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.guide-recommendation-actions .button {
+  width: 100%;
+}
+
+.product-fit-check {
+  margin-bottom: 78px;
 }
 
 .start-page {
@@ -3730,6 +3992,12 @@ body.preview-open {
   .sample-offer,
   .sample-guide,
   .sample-guide-cards,
+  .buyer-question-banner,
+  .guide-hero,
+  .guide-problem-grid,
+  .fit-section,
+  .risk-grid,
+  .guide-recommendation,
   .walkthrough-steps,
   .parent-fit-grid,
   .purchase-details,
@@ -3799,6 +4067,12 @@ body.preview-open {
   .next-steps h2,
   .sample-offer h2,
   .sample-guide h2,
+  .buyer-question-banner h2,
+  .guide-hero h1,
+  .guide-problem h2,
+  .comparison-heading h2,
+  .risk-cost-section h2,
+  .guide-recommendation h2,
   .walkthrough-copy h2,
   .about-hero h1,
   .field-notes-system h2,
@@ -3829,6 +4103,57 @@ body.preview-open {
 
   .use-walkthrough {
     margin: 56px auto;
+  }
+
+  .buyer-question-banner {
+    margin: -28px 16px 56px;
+    padding: 22px;
+  }
+
+  .buyer-question-banner .button {
+    justify-self: stretch;
+    white-space: normal;
+  }
+
+  .guide-page {
+    padding-top: 30px;
+  }
+
+  .guide-hero,
+  .guide-problem,
+  .comparison-section,
+  .fit-section,
+  .risk-cost-section,
+  .guide-recommendation {
+    margin-bottom: 56px;
+  }
+
+  .comparison-section,
+  .guide-recommendation {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 22px;
+  }
+
+  .guide-answer-card p {
+    font-size: 21px;
+  }
+
+  .guide-hero p:not(.eyebrow),
+  .guide-problem > p:not(.eyebrow),
+  .comparison-heading p,
+  .guide-recommendation p {
+    font-size: 17px;
+  }
+
+  .risk-grid article,
+  .guide-problem-grid article,
+  .fit-card {
+    padding: 22px;
+  }
+
+  .fit-card h2 {
+    font-size: 25px;
   }
 
   .about-hero {
