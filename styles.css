@@ -1937,10 +1937,14 @@ p {
   text-transform: uppercase;
 }
 
-.testimonials {
+.testimonials,
+.family-results {
   margin: 0 auto 105px;
   max-width: var(--max);
   padding: 0 16px;
+}
+
+.testimonials {
   text-align: center;
 }
 
@@ -1970,6 +1974,99 @@ cite {
   display: block;
   font-style: normal;
   margin-top: 18px;
+}
+
+.family-results {
+  display: grid;
+  gap: 22px;
+}
+
+.family-results-heading {
+  max-width: 760px;
+}
+
+.family-results-heading h2 {
+  color: var(--ink);
+  font-size: 38px;
+  line-height: 1.08;
+  margin-top: 4px;
+}
+
+.family-results-heading p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.45;
+  margin-top: 12px;
+}
+
+.family-results-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.family-results-grid article {
+  background: var(--paper);
+  border: 1px solid rgba(184, 155, 54, 0.32);
+  border-radius: 8px;
+  display: grid;
+  gap: 9px;
+  padding: 22px;
+}
+
+.family-results-grid span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.family-results-grid h3 {
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.family-results-grid p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.family-results-cta {
+  align-items: center;
+  background: var(--ink);
+  border-radius: 8px;
+  color: var(--white);
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(160px, 0.35fr) minmax(0, 1fr) auto;
+  padding: 18px 20px;
+}
+
+.family-results-cta strong {
+  color: var(--gold-bright);
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.05;
+}
+
+.family-results-cta span {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.family-results-cta .button {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--ink);
+  font-size: 16px;
+  min-height: 44px;
+  min-width: 0;
+  padding: 10px 16px;
 }
 
 .signup {
@@ -4420,6 +4517,8 @@ body.preview-open {
   .sample-path-grid,
   .decision-frame,
   .principle-strip-list,
+  .family-results-grid,
+  .family-results-cta,
   .principle-grid,
   .roadmap-grid,
   .credibility-grid,
@@ -4566,6 +4665,10 @@ body.preview-open {
   .parent-fit h2,
   .sales-units h2,
   .final-cta h2 {
+    font-size: 28px;
+  }
+
+  .family-results-heading h2 {
     font-size: 28px;
   }
 
