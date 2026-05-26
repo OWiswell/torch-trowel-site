@@ -3017,13 +3017,13 @@ body.preview-open {
 }
 
 .free-lesson-preview {
-  align-items: center;
+  align-items: start;
   background: var(--paper);
   border: 1px solid rgba(184, 155, 54, 0.38);
   border-radius: 8px;
   display: grid;
   gap: 18px;
-  grid-template-columns: minmax(0, 0.85fr) minmax(220px, 1fr);
+  grid-template-columns: minmax(0, 0.62fr) minmax(280px, 1fr);
   margin-top: 4px;
   max-width: 650px;
   padding: 18px;
@@ -3051,6 +3051,26 @@ body.preview-open {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.free-preview-pages.free-preview-packet {
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.free-preview-page {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  min-width: 0;
+}
+
+.free-preview-page figcaption {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.15;
+  text-transform: uppercase;
 }
 
 .free-preview-pages img {
@@ -4176,6 +4196,10 @@ body.preview-open {
   .faq-grid,
   .include-grid {
     grid-template-columns: 1fr;
+  }
+
+  .free-preview-pages.free-preview-packet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .utility-hero,
