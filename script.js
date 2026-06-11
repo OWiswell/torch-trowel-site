@@ -1,6 +1,22 @@
 const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
+const trackConversionEvent = (eventName, detail = {}) => {
+  if (!eventName) return;
+  window.zaraz?.track?.(eventName, detail);
+  window.dataLayer?.push({ event: eventName, ...detail });
+  window.plausible?.(eventName, { props: detail });
+};
+
+document.querySelectorAll("[data-event]").forEach((target) => {
+  target.addEventListener("click", () => {
+    trackConversionEvent(target.dataset.event, {
+      label: target.dataset.eventLabel || target.textContent.trim(),
+      path: window.location.pathname
+    });
+  });
+});
+
 if (menuButton && nav) {
   menuButton.addEventListener("click", () => {
     const isOpen = menuButton.getAttribute("aria-expanded") === "true";
@@ -24,8 +40,28 @@ if (menuButton && nav) {
 }
 
 document.querySelectorAll("[data-lead-form]").forEach((form) => {
+  const firstField = form.querySelector("input:not([type='hidden']), select, textarea");
+
+  firstField?.addEventListener("focus", () => {
+    if (form.dataset.formStarted === "true") return;
+    form.dataset.formStarted = "true";
+    trackConversionEvent(form.dataset.startEvent || "start_lead_form", {
+      source: form.querySelector("[name='source']")?.value || window.location.pathname
+    });
+  }, { once: true });
+
+  form.querySelectorAll("input:not([type='hidden']), select, textarea").forEach((field) => {
+    field.addEventListener("invalid", () => {
+      form.classList.remove("has-error");
+      requestAnimationFrame(() => form.classList.add("has-error"));
+    });
+    field.addEventListener("input", () => form.classList.remove("has-error"));
+  });
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    form.classList.remove("has-error", "is-success");
+    form.classList.add("is-sending");
     const note = form.querySelector(".form-note");
     const submit = form.querySelector("button[type='submit']");
     const endpoint = form.getAttribute("action") || form.dataset.endpoint;
@@ -35,6 +71,7 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
     if (formData.get("website")) return;
 
     if (!endpoint) {
+      form.classList.remove("is-sending");
       if (note) {
         note.textContent = "Preview mode: add a form endpoint to start emailing signups to matt@torchandtrowel.com.";
       }
@@ -55,25 +92,35 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
 
       if (!response.ok) throw new Error("Form submission failed");
 
+      trackConversionEvent(form.dataset.submitEvent || "submit_lead_form", {
+        source: form.querySelector("[name='source']")?.value || window.location.pathname
+      });
+
       if (note) {
         note.textContent = "You're on the list. Your free lesson is ready.";
       }
+      form.classList.remove("is-sending");
+      form.classList.add("is-success");
       if (successUrl) {
-        window.location.href = successUrl;
+        window.setTimeout(() => {
+          window.location.href = successUrl;
+        }, 260);
       }
     } catch (error) {
+      form.classList.remove("is-sending");
+      form.classList.add("has-error");
       if (note) {
         note.textContent = "Something went wrong. Please email matt@torchandtrowel.com and we'll send the lesson directly.";
       }
       if (submit) {
-        submit.textContent = "Submit";
+        submit.textContent = submit.dataset.defaultText || "Send Me the Free Lesson";
         submit.disabled = false;
       }
       return;
     }
 
     if (submit) {
-      submit.textContent = "Submitted";
+      submit.textContent = "Lesson sent";
       submit.disabled = true;
     }
   });
@@ -139,6 +186,19 @@ document.querySelectorAll("[data-lesson-carousel]").forEach((carousel) => {
   dots.forEach((dot, dotIndex) => {
     dot.addEventListener("click", (event) => keepPosition(event, () => showSlide(dotIndex)));
   });
+});
+
+document.querySelectorAll(".mobile-conversion-bar").forEach((bar) => {
+  const footer = document.querySelector(".site-footer");
+  const updateBar = () => {
+    const hasScrolled = window.scrollY > Math.min(420, window.innerHeight * 0.58);
+    const footerIsNear = footer ? footer.getBoundingClientRect().top < window.innerHeight - 12 : false;
+    bar.classList.toggle("is-visible", hasScrolled && !footerIsNear);
+  };
+
+  updateBar();
+  window.addEventListener("scroll", updateBar, { passive: true });
+  window.addEventListener("resize", updateBar);
 });
 
 document.querySelectorAll("[data-field-notes]").forEach(async (fieldNotes) => {
@@ -281,6 +341,11 @@ if (previewTriggers.length) {
       const pairedTriggers = pair
         ? Array.from(document.querySelectorAll(`[data-preview-pair="${pair}"]`))
         : [trigger];
+      trackConversionEvent(trigger.dataset.event || "open_pdf_preview", {
+        title: trigger.dataset.previewTitle || "Page preview",
+        pair: pair || "single",
+        path: window.location.pathname
+      });
       lastFocused = trigger;
       pages.classList.toggle("is-paired", pairedTriggers.length > 1);
       pages.innerHTML = pairedTriggers.map((pairedTrigger, index) => {

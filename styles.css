@@ -145,6 +145,21 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 body {
   margin: 0;
   background: var(--white);
@@ -475,6 +490,15 @@ p {
 .button:focus-visible {
   box-shadow: 0 8px 24px rgba(20, 23, 30, 0.12);
   transform: translateY(-1px);
+}
+
+.button svg {
+  transition: transform var(--ease);
+}
+
+.button:hover svg,
+.button:focus-visible svg {
+  transform: translateX(2px);
 }
 
 .button:active {
@@ -2123,6 +2147,14 @@ cite {
   gap: 8px;
 }
 
+.optional-label {
+  color: rgba(47, 51, 64, 0.64);
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 6px;
+  text-transform: uppercase;
+}
+
 .form-honeypot {
   position: absolute;
   left: -100vw;
@@ -2134,16 +2166,24 @@ cite {
 input,
 select {
   background: var(--white);
-  border: 0;
+  border: 2px solid transparent;
   border-radius: 8px;
   font: inherit;
   min-height: 40px;
   padding: 8px 12px;
+  transition: background var(--ease), border-color var(--ease), box-shadow var(--ease), transform var(--ease);
 }
 
 input:hover,
 select:hover {
-  border-color: #a8a8a8;
+  border-color: rgba(47, 51, 64, 0.22);
+}
+
+.lead-form input:focus,
+.lead-form select:focus {
+  border-color: rgba(47, 51, 64, 0.46);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.32);
+  outline: none;
 }
 
 .lead-form .button {
@@ -2152,6 +2192,7 @@ select:hover {
   cursor: pointer;
   font-size: 14px;
   min-height: 40px;
+  position: relative;
   width: 100%;
 }
 
@@ -2160,10 +2201,59 @@ select:hover {
   opacity: 0.82;
 }
 
+.lead-form.is-sending .button {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0));
+  background-size: 240% 100%;
+  animation: form-button-sending 850ms linear infinite;
+}
+
+.lead-form.is-success .button {
+  background: #27301f;
+}
+
+.lead-form.is-success .button::after {
+  content: "✓";
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.lead-form.has-error {
+  animation: form-error-nudge 180ms ease-out;
+}
+
 .form-note {
   color: var(--muted);
   font-size: 14px;
   min-height: 38px;
+}
+
+@keyframes form-button-sending {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -40% 0;
+  }
+}
+
+@keyframes form-error-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  35% {
+    transform: translateX(-4px);
+  }
+
+  70% {
+    transform: translateX(4px);
+  }
+}
+
+.mobile-conversion-bar {
+  display: none;
 }
 
 .site-footer {
@@ -3037,8 +3127,29 @@ select:hover {
   cursor: zoom-in;
   display: block;
   padding: 0;
+  position: relative;
   text-align: inherit;
   width: 100%;
+}
+
+.preview-trigger::after {
+  background: rgba(47, 51, 64, 0.86);
+  border-radius: 999px;
+  bottom: 10px;
+  color: var(--white);
+  content: "Preview";
+  font-size: 11px;
+  font-weight: 800;
+  left: 50%;
+  letter-spacing: 0;
+  opacity: 0;
+  padding: 6px 10px;
+  pointer-events: none;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translate(-50%, 6px);
+  transition: opacity var(--ease), transform var(--ease);
+  z-index: 2;
 }
 
 .preview-trigger img {
@@ -3049,7 +3160,13 @@ select:hover {
 .preview-trigger:hover img,
 .preview-trigger:focus-visible img {
   box-shadow: 0 18px 30px rgba(16, 24, 35, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.012);
+}
+
+.preview-trigger:hover::after,
+.preview-trigger:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .preview-trigger:focus-visible {
@@ -3693,19 +3810,34 @@ body.preview-open {
 .lesson-carousel-frame {
   background: var(--paper);
   border-radius: 8px;
+  overflow: hidden;
   padding: 22px 26px 24px;
   position: relative;
 }
 
 .lesson-carousel-slide {
   align-items: center;
-  display: none;
+  display: grid;
   gap: 24px;
   grid-template-columns: 250px minmax(0, 1fr);
+  grid-column: 1;
+  grid-row: 1;
   min-height: 420px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(14px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  visibility: hidden;
 }
 
 .lesson-carousel-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.lesson-carousel-slides {
   display: grid;
 }
 
@@ -3810,12 +3942,15 @@ body.preview-open {
   height: 38px;
   justify-content: center;
   line-height: 1;
+  transition: background var(--ease), border-color var(--ease), box-shadow var(--ease), transform var(--ease);
   width: 38px;
 }
 
 .lesson-carousel-controls > button:hover,
 .lesson-carousel-controls > button:focus-visible {
   background: var(--gold-bright);
+  box-shadow: 0 8px 18px rgba(16, 24, 35, 0.12);
+  transform: translateY(-1px);
 }
 
 .lesson-carousel-dots {
@@ -3830,11 +3965,13 @@ body.preview-open {
   cursor: pointer;
   height: 9px;
   padding: 0;
+  transition: background var(--ease), transform var(--ease), width var(--ease);
   width: 28px;
 }
 
 .lesson-carousel-dots button.is-active {
   background: var(--gold);
+  transform: scaleX(1.18);
 }
 
 .after-download {
@@ -4461,6 +4598,42 @@ body.preview-open {
 @media (max-width: 760px) {
   body {
     font-size: 18px;
+  }
+
+  body:has(.mobile-conversion-bar) {
+    padding-bottom: 82px;
+  }
+
+  .mobile-conversion-bar {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(47, 51, 64, 0.14);
+    bottom: 0;
+    box-shadow: 0 -10px 28px rgba(20, 23, 30, 0.12);
+    display: flex;
+    gap: 10px;
+    left: 0;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    position: fixed;
+    right: 0;
+    transform: translateY(110%);
+    transition: opacity var(--ease), transform var(--ease);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mobile-conversion-bar.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mobile-conversion-bar .button {
+    flex: 1;
+    font-size: 15px;
+    min-height: 48px;
+    padding: 10px 12px;
   }
 
   .site-header {

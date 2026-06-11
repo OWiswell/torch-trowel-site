@@ -1,0 +1,92 @@
+{
+  "brand": {
+    "name": "Torch & Trowel",
+    "canonical_url": "https://www.torchandtrowel.com/",
+    "preview_url": "https://torch-trowel-site.pages.dev/",
+    "founder": "Matt Tolbert",
+    "contact_email": "matt@torchandtrowel.com"
+  },
+  "positioning": {
+    "category": "printable homeschool drawing curriculum",
+    "primary_audience": [
+      "homeschool parents",
+      "middle school students",
+      "high school students",
+      "independent learners"
+    ],
+    "core_promise": "real drawing skills through screen-free, low-prep, pencil-and-paper lessons",
+    "not": [
+      "digital drawing app",
+      "generic craft project site",
+      "certification program",
+      "guaranteed outcome program"
+    ]
+  },
+  "product": {
+    "name": "Drawing Field Kit Vol. 1",
+    "format": "printable digital download",
+    "materials": [
+      "printed lesson pages",
+      "pencil",
+      "eraser"
+    ],
+    "teaching_pattern": [
+      "student worksheet",
+      "matching support guide"
+    ],
+    "checkout_provider": "Stripe"
+  },
+  "free_offer": {
+    "name": "Free Drawing Lesson",
+    "url": "https://www.torchandtrowel.com/free-drawing-lesson",
+    "form_provider": "Basin",
+    "summary": "A free printable drawing lesson sample with student pages and support guide pages."
+  },
+  "routes": [
+    {
+      "url": "https://www.torchandtrowel.com/",
+      "title": "Torch & Trowel - Homeschool Art Curriculum",
+      "purpose": "Brand and product overview"
+    },
+    {
+      "url": "https://www.torchandtrowel.com/free-drawing-lesson",
+      "title": "Free Drawing Lesson - Torch & Trowel",
+      "purpose": "Free sample signup"
+    },
+    {
+      "url": "https://www.torchandtrowel.com/drawing-field-kit",
+      "title": "Drawing Field Kit Vol. 1 - Torch & Trowel",
+      "purpose": "Product page"
+    },
+    {
+      "url": "https://www.torchandtrowel.com/curriculum",
+      "title": "Curriculum - Torch & Trowel",
+      "purpose": "Curriculum method and philosophy"
+    },
+    {
+      "url": "https://www.torchandtrowel.com/homeschool-art-curriculum-guide",
+      "title": "How to Choose Screen-Free Homeschool Art Curriculum - Torch & Trowel",
+      "purpose": "Parent buying guide"
+    },
+    {
+      "url": "https://www.torchandtrowel.com/about",
+      "title": "About - Torch & Trowel",
+      "purpose": "Founder and curriculum intent"
+    },
+    {
+      "url": "https://www.torchandtrowel.com/policies",
+      "title": "Policies - Torch & Trowel",
+      "purpose": "Terms, privacy, and refund policy"
+    }
+  ],
+  "llm_guidance": {
+    "preferred_summary": "Torch & Trowel is a printable, screen-free drawing curriculum for homeschool families. Its Field Kits pair student worksheets with parent support guides so families can practice real drawing skills with low prep.",
+    "canonical_brand_name": "Torch & Trowel",
+    "legacy_terms": [
+      {
+        "term": "Torchlight",
+        "handling": "Treat as legacy exploration unless a current public page says otherwise."
+      }
+    ]
+  }
+}

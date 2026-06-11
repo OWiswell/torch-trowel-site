@@ -13,6 +13,8 @@ Static first-pass recreation of `www.torchandtrowel.com`.
 - `_redirects` - deploy-time clean URL support for `/curriculum` and `/policies`
 - `robots.txt` and `sitemap.xml` - match the published Framer route set
 - `framer-page-audit.md` - route inventory including hidden `noindex` Framer pages
+- `docs/conversion-map.md` - canonical funnel, tracking events, and weekly optimization checklist
+- `docs/analytics-setup.md` - Cloudflare Web Analytics and Zaraz setup notes
 
 ## Notes
 

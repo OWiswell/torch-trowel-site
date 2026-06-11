@@ -23,7 +23,7 @@
         <a href="./curriculum.html">Curriculum</a>
         <a href="./homeschool-art-curriculum-guide.html">Guide</a>
         <a href="./about.html">About</a>
-        <a class="nav-cta" href="./drawing-field-kit.html">Buy Kit</a>
+        <a class="nav-cta" href="./drawing-field-kit.html" data-event="click_nav_buy_kit">Buy Kit</a>
       </nav>
     </header>
 
@@ -102,14 +102,13 @@
             </div>
           </div>
         </div>
-        <form id="lesson-form" class="lead-form free-lesson-form" action="https://usebasin.com/f/31f92c9bdd68" method="POST" data-lead-form data-success-url="./free-sample-v1.html">
+        <form id="lesson-form" class="lead-form free-lesson-form" action="https://usebasin.com/f/31f92c9bdd68" method="POST" data-lead-form data-start-event="start_lead_form" data-submit-event="submit_lead_form" data-success-url="./free-sample-v1.html">
           <input type="hidden" name="subject" value="New Torch & Trowel free lesson signup">
           <input type="hidden" name="source" value="Free drawing lesson landing page">
           <label class="form-honeypot" aria-hidden="true">Leave this field blank <input name="website" tabindex="-1" autocomplete="off"></label>
-          <label>Name <input name="name" autocomplete="name" required></label>
+          <label>Name <span class="optional-label">optional</span><input name="name" autocomplete="name"></label>
           <label>Email <input type="email" name="email" autocomplete="email" required></label>
-          <label>Who are you?<select name="role" required><option value="">I am...</option><option>A Parent</option><option>A Classroom Teacher</option><option>Just Curious</option></select></label>
-          <button class="button component-button primary" type="submit">Send Me the Free Lesson</button>
+          <button class="button component-button primary" type="submit" data-default-text="Send Me the Free Lesson">Send Me the Free Lesson</button>
           <p class="form-note" role="status" aria-live="polite"></p>
         </form>
       </section>
@@ -146,6 +145,10 @@
           <article><h3>How do the support pages work?</h3><p>The Support Guide mirrors the Student Worksheet, but adds examples, technique tips, checklists, and reminders so parents can guide without guessing.</p></article>
         </div>
       </section>
+
+      <div class="mobile-conversion-bar" aria-label="Free lesson action">
+        <a class="button component-button primary" href="#lesson-form" data-event="click_sticky_free_lesson">Get the Free Lesson</a>
+      </div>
     </main>
 
     <footer class="site-footer component-footer">
