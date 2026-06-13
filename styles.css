@@ -2138,6 +2138,7 @@ cite {
   display: grid;
   gap: 16px;
   padding: 20px;
+  width: 100%;
 }
 
 .lead-form label {
@@ -2202,6 +2203,12 @@ select:hover {
 
 .turnstile-field {
   min-height: 65px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.turnstile-field > div {
+  max-width: 100%;
 }
 
 .lead-form .button:disabled {
@@ -3480,7 +3487,7 @@ body.preview-open {
   align-items: center;
   display: grid;
   gap: 42px;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 360px);
   margin: 0 auto;
   max-width: var(--max);
   padding: 0 16px;
@@ -4549,7 +4556,7 @@ body.preview-open {
 
   .free-lesson-hero,
   .sales-hero {
-    grid-template-columns: minmax(0, 1fr) 310px;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 360px);
     margin-left: 40px;
     margin-right: 40px;
     padding: 0;
