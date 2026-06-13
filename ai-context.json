@@ -39,7 +39,7 @@
   "free_offer": {
     "name": "Free Drawing Lesson",
     "url": "https://www.torchandtrowel.com/free-drawing-lesson",
-    "form_provider": "Basin",
+    "form_provider": "Cloudflare Pages Function + Resend",
     "summary": "A free printable drawing lesson sample with student pages and support guide pages."
   },
   "routes": [

@@ -29,7 +29,8 @@ Cloudflare Pages preview: https://torch-trowel-site.pages.dev/
 - Teaching pattern: student worksheet plus matching support guide
 - Free offer: one screen-free drawing lesson sample
 - Checkout/payment: Stripe
-- Free lesson form endpoint: Basin
+- Free lesson form endpoint: Cloudflare Pages Function at /api/subscribe
+- Email delivery: Resend
 
 ## Use Guidance
 

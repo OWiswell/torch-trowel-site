@@ -1,9 +1,10 @@
 # Analytics Setup
 
-This site is ready for two Cloudflare-native measurement layers:
+This site is ready for three Cloudflare-native measurement layers:
 
 1. Cloudflare Web Analytics for pageviews, traffic sources, and performance.
 2. Cloudflare Zaraz for custom funnel events such as CTA clicks, form starts, downloads, and buy-button clicks.
+3. A lightweight D1 event log through `/api/track` for first-party funnel review without another subscription.
 
 ## Cloudflare Web Analytics
 
@@ -25,6 +26,12 @@ Do not manually paste a fake token into the site. Cloudflare can inject the corr
 Use this for the conversion question: "What actions are visitors taking?"
 
 The site already calls `zaraz.track(eventName, eventProperties)` when Zaraz is present. It also sends the same event names to `dataLayer` and Plausible if those tools are added later.
+
+## D1 Event Log
+
+The same `trackConversionEvent` helper now posts to `/api/track`. When the Pages project has the `DB` D1 binding configured, events are stored in `analytics_events`.
+
+Use this as the no-subscription baseline. Zaraz and Web Analytics are still useful for richer traffic reporting, but the D1 log is enough to answer whether visitors are moving through the sales funnel.
 
 Core events currently emitted:
 
@@ -51,6 +58,16 @@ Recommended first dashboard:
 - Free sample downloads
 - Product page clicks
 - Buy button clicks
+
+Useful D1 query:
+
+```sql
+SELECT event_name, COUNT(*) AS total
+FROM analytics_events
+WHERE created_at >= datetime('now', '-7 days')
+GROUP BY event_name
+ORDER BY total DESC;
+```
 
 ## First Questions To Answer
 

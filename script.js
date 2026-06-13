@@ -6,6 +6,24 @@ const trackConversionEvent = (eventName, detail = {}) => {
   window.zaraz?.track?.(eventName, detail);
   window.dataLayer?.push({ event: eventName, ...detail });
   window.plausible?.(eventName, { props: detail });
+
+  const payload = JSON.stringify({
+    eventName,
+    detail,
+    path: window.location.pathname
+  });
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon("/api/track", new Blob([payload], { type: "application/json" }));
+    return;
+  }
+
+  fetch("/api/track", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: payload,
+    keepalive: true
+  }).catch(() => {});
 };
 
 document.querySelectorAll("[data-event]").forEach((target) => {

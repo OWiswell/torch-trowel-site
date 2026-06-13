@@ -1,0 +1,13 @@
+name = "torch-trowel-site"
+compatibility_date = "2026-06-13"
+pages_build_output_dir = "."
+
+[vars]
+SITE_URL = "https://www.torchandtrowel.com"
+RESEND_FROM = "Torch & Trowel <hello@torchandtrowel.com>"
+NURTURE_DAILY_LIMIT = "50"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "torch_trowel_funnel"
+database_id = "6479b518-e5a0-4bb8-8dfc-ea0152130423"

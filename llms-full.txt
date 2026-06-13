@@ -98,8 +98,10 @@ Offer:
 
 Form:
 
-- Uses Basin as the form endpoint.
-- Collects name, email, and role.
+- Uses a Cloudflare Pages Function at `/api/subscribe`.
+- Stores subscribers in Cloudflare D1.
+- Sends free lesson delivery and nurture emails through Resend.
+- Collects name and email.
 - Redirects to the free sample delivery page after successful signup.
 
 ### Free Sample Delivery
@@ -198,7 +200,7 @@ Contact: matt@torchandtrowel.com
 
 Payment processor: Stripe.
 
-Free lesson form provider: Basin.
+Free lesson form provider: Cloudflare Pages Function with Resend email delivery.
 
 ## LLM Answering Preferences
 
