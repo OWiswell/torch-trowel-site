@@ -26,6 +26,53 @@ const trackConversionEvent = (eventName, detail = {}) => {
   }).catch(() => {});
 };
 
+const loadScript = (src) => new Promise((resolve, reject) => {
+  if (document.querySelector(`script[src="${src}"]`)) {
+    resolve();
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.src = src;
+  script.async = true;
+  script.defer = true;
+  script.addEventListener("load", resolve, { once: true });
+  script.addEventListener("error", reject, { once: true });
+  document.head.append(script);
+});
+
+const setupTurnstile = async () => {
+  const widgets = Array.from(document.querySelectorAll("[data-turnstile-widget]"));
+  if (!widgets.length) return;
+
+  let config = {};
+  try {
+    const response = await fetch("/api/config", { headers: { Accept: "application/json" } });
+    if (response.ok) config = await response.json();
+  } catch {
+    return;
+  }
+
+  if (!config.turnstileSiteKey) return;
+
+  try {
+    await loadScript("https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit");
+  } catch {
+    return;
+  }
+
+  widgets.forEach((widget) => {
+    if (widget.dataset.turnstileRendered === "true" || !window.turnstile) return;
+    window.turnstile.render(widget, {
+      sitekey: config.turnstileSiteKey,
+      theme: "light"
+    });
+    widget.dataset.turnstileRendered = "true";
+  });
+};
+
+setupTurnstile();
+
 document.querySelectorAll("[data-event]").forEach((target) => {
   target.addEventListener("click", () => {
     trackConversionEvent(target.dataset.event, {
@@ -87,6 +134,16 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
     const formData = new FormData(form);
 
     if (formData.get("website")) return;
+
+    const turnstileWidget = form.querySelector("[data-turnstile-widget]");
+    if (turnstileWidget?.dataset.turnstileRendered === "true" && !formData.get("cf-turnstile-response")) {
+      form.classList.remove("is-sending");
+      form.classList.add("has-error");
+      if (note) {
+        note.textContent = "Please complete the quick security check and try again.";
+      }
+      return;
+    }
 
     if (!endpoint) {
       form.classList.remove("is-sending");

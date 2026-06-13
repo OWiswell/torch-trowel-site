@@ -2196,6 +2196,14 @@ select:hover {
   width: 100%;
 }
 
+.turnstile-field:empty {
+  display: none;
+}
+
+.turnstile-field {
+  min-height: 65px;
+}
+
 .lead-form .button:disabled {
   cursor: default;
   opacity: 0.82;

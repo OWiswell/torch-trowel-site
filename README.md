@@ -37,7 +37,7 @@ The forms are wired to the Cloudflare + Resend funnel:
 
 Current submitted fields are `name`, `email`, `subject`, and `source`. The hidden `website` field is a basic honeypot for spam bots.
 
-For production, configure the Cloudflare Pages `DB` binding, Resend secret, sender address, Turnstile widget, and scheduled nurture Worker described in `docs/email-nurture-cloudflare-resend.md`.
+For production, configure the Cloudflare Pages `DB` binding, Resend secret, sender address, Turnstile site key/secret, and scheduled nurture Worker described in `docs/email-nurture-cloudflare-resend.md`.
 
 ## Local Preview
 

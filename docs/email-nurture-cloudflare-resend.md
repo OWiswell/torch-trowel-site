@@ -34,10 +34,10 @@ Do not commit Resend keys or Cloudflare tokens to GitHub.
 The public signup endpoint is same-origin checked and Turnstile-ready. To enable Turnstile:
 
 1. Create a Cloudflare Turnstile widget for `torchandtrowel.com`.
-2. Add the public site key to the signup forms as a Turnstile widget.
+2. Add the public site key to Cloudflare Pages as `TURNSTILE_SITE_KEY`.
 3. Add the private secret to Cloudflare Pages as `TURNSTILE_SECRET_KEY`.
 
-Do not add `TURNSTILE_SECRET_KEY` before the browser widget is present, or legitimate form submissions will not have a Turnstile token.
+Do not add `TURNSTILE_SECRET_KEY` before `TURNSTILE_SITE_KEY`, or legitimate form submissions will not have a Turnstile token.
 
 ## Resend Setup
 
