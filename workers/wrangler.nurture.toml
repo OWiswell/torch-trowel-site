@@ -1,0 +1,11 @@
+name = "torch-trowel-nurture-cron"
+main = "nurture-cron.js"
+compatibility_date = "2026-06-13"
+workers_dev = false
+preview_urls = false
+
+[vars]
+SITE_URL = "https://torch-trowel-site.pages.dev"
+
+[triggers]
+crons = ["0 14 * * *"]
