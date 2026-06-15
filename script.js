@@ -201,6 +201,25 @@ document.querySelectorAll("[data-lead-form]").forEach((form) => {
   });
 });
 
+document.querySelectorAll("[data-unit-card]").forEach((card) => {
+  const toggles = Array.from(card.querySelectorAll("[data-unit-toggle]"));
+
+  const setOpen = (isOpen) => {
+    card.classList.toggle("is-flipped", isOpen);
+    toggles.forEach((toggle) => toggle.setAttribute("aria-expanded", String(isOpen)));
+  };
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => setOpen(!card.classList.contains("is-flipped")));
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && card.classList.contains("is-flipped")) {
+      setOpen(false);
+    }
+  });
+});
+
 document.querySelectorAll("[data-quote-carousel]").forEach((carousel) => {
   const slides = Array.from(carousel.querySelectorAll(".quote-slide"));
   const next = carousel.querySelector("[data-quote-next]");
