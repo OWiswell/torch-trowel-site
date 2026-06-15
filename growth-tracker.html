@@ -423,6 +423,20 @@
       </form>
     </dialog>
 
+    <dialog id="accessDialog">
+      <form class="modal-body" method="dialog">
+        <h2>Tracker Access</h2>
+        <label>Access Token
+          <input class="input" id="accessTokenInput" type="password" autocomplete="off" placeholder="Paste tracker token">
+        </label>
+        <div class="header-actions">
+          <button class="button ghost" id="clearAccessButton" value="default" type="button">Clear</button>
+          <button class="button ghost" value="cancel" type="submit">Cancel</button>
+          <button class="button primary" id="saveAccessButton" value="default" type="button">Save Access</button>
+        </div>
+      </form>
+    </dialog>
+
     <div class="toast" id="toast" role="status"></div>
 
     <script>
@@ -676,12 +690,23 @@
       $("#recommendationButton").addEventListener("click", () => $("#recommendationDialog").showModal());
       $("#saveRecommendationButton").addEventListener("click", saveRecommendation);
       $("#tokenButton").addEventListener("click", () => {
-        const current = token();
-        const next = prompt("Tracker access token", current);
-        if (next === null) return;
-        if (next.trim()) localStorage.setItem(tokenKey, next.trim());
+        $("#accessTokenInput").value = token();
+        $("#accessDialog").showModal();
+      });
+      $("#saveAccessButton").addEventListener("click", async () => {
+        const next = $("#accessTokenInput").value.trim();
+        if (next) localStorage.setItem(tokenKey, next);
         else localStorage.removeItem(tokenKey);
-        load();
+        $("#accessDialog").close();
+        toast(next ? "Access saved." : "Access cleared.");
+        await load();
+      });
+      $("#clearAccessButton").addEventListener("click", async () => {
+        localStorage.removeItem(tokenKey);
+        $("#accessTokenInput").value = "";
+        $("#accessDialog").close();
+        toast("Access cleared.");
+        await load();
       });
 
       load();
