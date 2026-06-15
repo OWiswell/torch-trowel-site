@@ -13,7 +13,7 @@ const appsScriptUrl = (env, action) => {
   return url.toString();
 };
 
-const forwardToAppsScript = async (request, env) => {
+const forwardToAppsScript = async ({ request, env }) => {
   if (!isAuthorized(request, env)) {
     return json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
