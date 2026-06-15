@@ -3,7 +3,7 @@ compatibility_date = "2026-06-13"
 pages_build_output_dir = "."
 
 [vars]
-SITE_URL = "https://www.torchandtrowel.com"
+SITE_URL = "https://torch-trowel-site.pages.dev"
 RESEND_FROM = "Torch & Trowel <hello@torchandtrowel.com>"
 NURTURE_DAILY_LIMIT = "50"
 
