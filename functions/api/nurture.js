@@ -1,5 +1,6 @@
 import { EMAIL_SEQUENCE, getEmailForStep } from "../lib/email-sequence.js";
 import { json, nowIso } from "../lib/db.js";
+import { applyEmailApprovalOverrides, getNotionEmailApproval } from "../lib/notion-approvals.js";
 import { sendSequenceEmail } from "../lib/resend.js";
 
 const daysSince = (isoDate) => {
@@ -41,8 +42,39 @@ export const onRequestPost = async ({ request, env }) => {
     const email = getEmailForStep(currentStep);
     if (!email || daysSince(subscriber.subscribed_at) < email.delayDays) continue;
 
-    const sent = await sendSequenceEmail(env, subscriber, email);
-    results.push({ subscriberId: subscriber.id, step: currentStep, sent: sent.ok, skipped: sent.skipped || false });
+    const approval = await getNotionEmailApproval(env, email);
+    if (!approval.approved) {
+      results.push({
+        subscriberId: subscriber.id,
+        step: currentStep,
+        sent: false,
+        skipped: true,
+        reason: approval.reason,
+        approvalStatus: approval.status || null
+      });
+      await env.DB.prepare(`
+        INSERT INTO email_events (id, subscriber_id, email, event_type, sequence_key, sequence_step, detail, created_at)
+        VALUES (?, ?, ?, 'email_skipped_not_approved', ?, ?, ?, ?)
+      `).bind(
+        crypto.randomUUID(),
+        subscriber.id,
+        subscriber.email,
+        subscriber.sequence_key,
+        currentStep,
+        JSON.stringify({
+          sequenceEmail: email.key,
+          reason: approval.reason,
+          status: approval.status,
+          pageUrl: approval.pageUrl,
+          detail: approval.detail
+        }).slice(0, 3000),
+        nowIso()
+      ).run();
+      continue;
+    }
+
+    const sent = await sendSequenceEmail(env, subscriber, applyEmailApprovalOverrides(email, approval));
+    results.push({ subscriberId: subscriber.id, step: currentStep, sent: sent.ok, skipped: sent.skipped || false, approvalStatus: approval.status || null });
 
     if (sent.ok && !sent.skipped) {
       await env.DB.prepare(`

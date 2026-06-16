@@ -10,6 +10,8 @@ This setup replaces a paid ConvertKit/MailerLite-style nurture with code that ru
 - `/api/unsubscribe` handles unsubscribe links.
 - `/api/track` stores custom conversion events from `script.js`.
 - `/api/nurture` sends due nurture emails when called by a protected cron worker.
+- Notion can act as the approval board before emails are sent through Resend.
+- `/api/email-preview?key=<email-key>&token=<preview-token>` renders protected email previews for review.
 
 ## Cloudflare Setup
 
@@ -22,12 +24,73 @@ This setup replaces a paid ConvertKit/MailerLite-style nurture with code that ru
    - `SITE_URL`: `https://www.torchandtrowel.com`
    - `RESEND_FROM`: `Torch & Trowel <hello@torchandtrowel.com>`
    - `NURTURE_DAILY_LIMIT`: `50`
+   - `NURTURE_REQUIRE_NOTION_APPROVAL`: `true` after Notion is configured and the welcome email is approved
 5. Add these secrets to the Pages project:
    - `RESEND_API_KEY`
    - `NURTURE_SHARED_SECRET`
+   - `EMAIL_PREVIEW_TOKEN`
+   - `NOTION_API_TOKEN`
+   - `NOTION_EMAIL_APPROVALS_DATABASE_ID`
    - `TURNSTILE_SECRET_KEY` after the Turnstile widget is added to the forms
 
 Do not commit Resend keys or Cloudflare tokens to GitHub.
+
+## Notion Email Approval Bridge
+
+The Notion approval database is:
+
+```txt
+Torch & Trowel Email Approvals
+https://app.notion.com/p/54ba102b5f66417d8250eee7ec866032
+```
+
+Use the `Start Here - Email Review Board` view. Each nurture email has a card with:
+
+- `Approval Status`
+- `Subject`
+- `Headline`
+- `Preview Text`
+- `Hero Image URL`
+- `Hero Alt`
+- `Primary CTA`
+- `Primary CTA URL`
+- `Image Notes`
+- `Copy Notes`
+
+Cloudflare reads cards by `Email Key`. When `NURTURE_REQUIRE_NOTION_APPROVAL=true`, a message only sends if the matching card has `Approval Status = Approved`.
+
+Cards in `Draft`, `Needs Review`, or `Paused` are skipped and logged as `email_skipped_not_approved`.
+
+To connect Cloudflare to Notion:
+
+1. Create a Notion integration at `https://www.notion.so/my-integrations`.
+2. Copy the internal integration secret into Cloudflare Pages as `NOTION_API_TOKEN`.
+3. Share the `Torch & Trowel Email Approvals` database with that Notion integration.
+4. Add the database ID to Cloudflare Pages as `NOTION_EMAIL_APPROVALS_DATABASE_ID`:
+
+```txt
+54ba102b5f66417d8250eee7ec866032
+```
+
+5. Add a private preview token as `EMAIL_PREVIEW_TOKEN`.
+6. Test a preview URL before approving:
+
+```txt
+https://www.torchandtrowel.com/api/email-preview?key=day-1-first-win&token=<EMAIL_PREVIEW_TOKEN>
+```
+
+7. Move the card to `Approved` only after copy, CTA, and image choice look right.
+8. Set `NURTURE_REQUIRE_NOTION_APPROVAL=true` after the first approved test passes.
+
+## Email Image Rules
+
+Email images should use stable public URLs hosted by the site or Cloudflare storage. Prefer real product and lesson assets over generated artwork:
+
+- Good: real worksheet pages, support guide pages, lesson overview pages, product screenshots.
+- Avoid: AI images with fake/misspelled text, generic art-class stock imagery, images that imply a different product than the printable lesson.
+- Current safest base URLs are under `https://www.torchandtrowel.com/assets/`.
+
+If a new image is needed, add it to the repository under `assets/email/` or another clear assets folder, deploy it through Cloudflare Pages, then paste the final public URL into Notion.
 
 ## Anti-Spam Setup
 

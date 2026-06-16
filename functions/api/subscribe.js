@@ -1,5 +1,6 @@
 import { getEmailForStep } from "../lib/email-sequence.js";
 import { cleanEmail, isSameOriginRequest, isValidEmail, json, makeId, makeToken, nowIso, recordAnalyticsEvent, recordEmailEvent, verifyTurnstile } from "../lib/db.js";
+import { applyEmailApprovalOverrides, getNotionEmailApproval } from "../lib/notion-approvals.js";
 import { sendSequenceEmail } from "../lib/resend.js";
 
 const subscriberFromRow = (row) => ({
@@ -80,7 +81,20 @@ export const onRequestPost = async ({ request, env }) => {
   await recordEmailEvent(env, existing ? "subscriber_updated" : "subscriber_created", subscriber, { source });
 
   if (shouldSendWelcome) {
-    const result = await sendSequenceEmail(env, subscriber, getEmailForStep(0));
+    const emailTemplate = getEmailForStep(0);
+    const approval = await getNotionEmailApproval(env, emailTemplate);
+    if (!approval.approved) {
+      await recordEmailEvent(env, "email_skipped_not_approved", subscriber, {
+        sequenceEmail: emailTemplate.key,
+        reason: approval.reason,
+        status: approval.status,
+        pageUrl: approval.pageUrl,
+        detail: approval.detail
+      });
+      return json({ ok: true, emailSkipped: true, reason: approval.reason });
+    }
+
+    const result = await sendSequenceEmail(env, subscriber, applyEmailApprovalOverrides(emailTemplate, approval));
     if (result.ok && !result.skipped) {
       await env.DB.prepare(`
         UPDATE subscribers

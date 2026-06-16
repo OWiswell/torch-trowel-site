@@ -10,7 +10,7 @@ export const sendSequenceEmail = async (env, subscriber, email) => {
   if (!email) return { ok: false, skipped: true, reason: "missing_email_template" };
 
   if (!env.RESEND_API_KEY) {
-    await recordEmailEvent(env, "email_skipped_missing_resend_key", subscriber, { sequenceEmail: email.key });
+    await recordEmailEvent(env, "email_skipped_missing_resend_key", subscriber, { sequenceEmail: email.key, approval: email.approval });
     return { ok: true, skipped: true, reason: "missing_resend_key" };
   }
 
@@ -44,6 +44,7 @@ export const sendSequenceEmail = async (env, subscriber, email) => {
   if (!response.ok) {
     await recordEmailEvent(env, "email_failed", subscriber, {
       sequenceEmail: email.key,
+      approval: email.approval,
       status: response.status,
       payload
     });
@@ -52,6 +53,7 @@ export const sendSequenceEmail = async (env, subscriber, email) => {
 
   await recordEmailEvent(env, "email_sent", subscriber, {
     sequenceEmail: email.key,
+    approval: email.approval,
     providerId: payload.id
   });
   return { ok: true, providerId: payload.id };

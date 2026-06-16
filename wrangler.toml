@@ -6,6 +6,8 @@ pages_build_output_dir = "."
 SITE_URL = "https://torch-trowel-site.pages.dev"
 RESEND_FROM = "Torch & Trowel <hello@torchandtrowel.com>"
 NURTURE_DAILY_LIMIT = "50"
+NURTURE_REQUIRE_NOTION_APPROVAL = "false"
+NOTION_EMAIL_APPROVALS_DATABASE_ID = "54ba102b5f66417d8250eee7ec866032"
 
 [[d1_databases]]
 binding = "DB"

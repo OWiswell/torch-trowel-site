@@ -64,6 +64,7 @@ const emailShell = ({ title, preview, siteUrl, unsubscribeUrl, heroImage, heroAl
 
 const lessonHero = (siteUrl) => `${siteUrl}/assets/free-lesson/dr101-overview-1.png`;
 const fieldKitHero = (siteUrl) => `${siteUrl}/assets/field-kit.png`;
+const pick = (override, fallback) => override || fallback;
 
 export const EMAIL_SEQUENCE = [
   {
@@ -71,18 +72,18 @@ export const EMAIL_SEQUENCE = [
     delayDays: 0,
     subject: "Your free Torch & Trowel drawing lesson",
     preview: "Here is the free lesson page plus a simple way to use it today.",
-    body: ({ name, siteUrl, unsubscribeUrl }) => emailShell({
+    body: ({ name, siteUrl, unsubscribeUrl, headline, preview, heroImage, heroAlt, primaryCta, primaryCtaUrl }) => emailShell({
       title: "Your free Torch & Trowel drawing lesson",
-      preview: "Here is the free lesson page plus a simple way to use it today.",
+      preview: pick(preview, "Here is the free lesson page plus a simple way to use it today."),
       siteUrl,
       unsubscribeUrl,
-      heroImage: lessonHero(siteUrl),
-      heroAlt: "Preview page from the free Torch & Trowel drawing lesson",
+      heroImage: pick(heroImage, lessonHero(siteUrl)),
+      heroAlt: pick(heroAlt, "Preview page from the free Torch & Trowel drawing lesson"),
       children: `
         <p style="margin: 0 0 18px;">Hi${name ? ` ${escapeHtml(name)}` : ""},</p>
-        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">Your free drawing lesson is ready.</h1>
+        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">${escapeHtml(pick(headline, "Your free drawing lesson is ready."))}</h1>
         <p style="margin: 0 0 18px;">Print the student worksheet, keep the guide nearby, and let the student work with a pencil before adding any extra instruction.</p>
-        ${button(`${siteUrl}/free-sample-v1.html`, "Open the Free Lesson")}
+        ${button(pick(primaryCtaUrl, `${siteUrl}/free-sample-v1.html`), pick(primaryCta, "Open the Free Lesson"))}
         <p style="margin: 0;">If the lesson helps your table, the full Drawing Field Kit gives you the next screen-free steps.</p>
         <p style="margin: 14px 0 0;"><a href="${siteUrl}/drawing-field-kit.html" style="color: #9a7424; font-weight: 700;">See the Drawing Field Kit</a></p>
       `
@@ -93,18 +94,18 @@ export const EMAIL_SEQUENCE = [
     delayDays: 1,
     subject: "The first drawing win to look for",
     preview: "A tiny observation that makes the lesson feel calmer.",
-    body: ({ siteUrl, unsubscribeUrl }) => emailShell({
+    body: ({ siteUrl, unsubscribeUrl, headline, preview, heroImage, heroAlt, primaryCta, primaryCtaUrl }) => emailShell({
       title: "The first drawing win to look for",
-      preview: "A tiny observation that makes the lesson feel calmer.",
+      preview: pick(preview, "A tiny observation that makes the lesson feel calmer."),
       siteUrl,
       unsubscribeUrl,
-      heroImage: lessonHero(siteUrl),
-      heroAlt: "Torch & Trowel printable drawing lesson page",
+      heroImage: pick(heroImage, lessonHero(siteUrl)),
+      heroAlt: pick(heroAlt, "Torch & Trowel printable drawing lesson page"),
       children: `
-        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">The first win is not a perfect drawing.</h1>
+        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">${escapeHtml(pick(headline, "The first win is not a perfect drawing."))}</h1>
         <p style="margin: 0 0 18px;">It is a student noticing a line, copying it with care, and trying again without panic.</p>
         <p style="margin: 0 0 18px;">That is the core habit Torch & Trowel is built to practice: observation before performance.</p>
-        ${button(`${siteUrl}/drawing-field-kit.html`, "View the Drawing Field Kit")}
+        ${button(pick(primaryCtaUrl, `${siteUrl}/drawing-field-kit.html`), pick(primaryCta, "View the Drawing Field Kit"))}
       `
     })
   },
@@ -113,18 +114,18 @@ export const EMAIL_SEQUENCE = [
     delayDays: 3,
     subject: "Why the lesson is intentionally simple",
     preview: "The simplicity is doing more work than it first appears.",
-    body: ({ siteUrl, unsubscribeUrl }) => emailShell({
+    body: ({ siteUrl, unsubscribeUrl, headline, preview, heroImage, heroAlt, primaryCta, primaryCtaUrl }) => emailShell({
       title: "Why the lesson is intentionally simple",
-      preview: "The simplicity is doing more work than it first appears.",
+      preview: pick(preview, "The simplicity is doing more work than it first appears."),
       siteUrl,
       unsubscribeUrl,
-      heroImage: `${siteUrl}/assets/curriculum-hero.png`,
-      heroAlt: "Torch & Trowel curriculum materials",
+      heroImage: pick(heroImage, `${siteUrl}/assets/curriculum-hero.png`),
+      heroAlt: pick(heroAlt, "Torch & Trowel curriculum materials"),
       children: `
-        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">The simplicity is doing real work.</h1>
+        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">${escapeHtml(pick(headline, "The simplicity is doing real work."))}</h1>
         <p style="margin: 0 0 18px;">Simple drawing prompts reduce the noise. Students can focus on one visible problem at a time: line, angle, proportion, spacing, and revision.</p>
         <p style="margin: 0 0 18px;">The full kit keeps that same rhythm across a larger sequence so families can build skill without building a new planning burden.</p>
-        ${button(`${siteUrl}/curriculum.html`, "See What Is Inside")}
+        ${button(pick(primaryCtaUrl, `${siteUrl}/curriculum.html`), pick(primaryCta, "See What Is Inside"))}
       `
     })
   },
@@ -133,18 +134,18 @@ export const EMAIL_SEQUENCE = [
     delayDays: 5,
     subject: "If you do not feel like an art teacher",
     preview: "You do not need to become one before your student can begin.",
-    body: ({ siteUrl, unsubscribeUrl }) => emailShell({
+    body: ({ siteUrl, unsubscribeUrl, headline, preview, heroImage, heroAlt, primaryCta, primaryCtaUrl }) => emailShell({
       title: "If you do not feel like an art teacher",
-      preview: "You do not need to become one before your student can begin.",
+      preview: pick(preview, "You do not need to become one before your student can begin."),
       siteUrl,
       unsubscribeUrl,
-      heroImage: fieldKitHero(siteUrl),
-      heroAlt: "Drawing Field Kit printable curriculum",
+      heroImage: pick(heroImage, fieldKitHero(siteUrl)),
+      heroAlt: pick(heroAlt, "Drawing Field Kit printable curriculum"),
       children: `
-        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">You do not need to perform as an art teacher.</h1>
+        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">${escapeHtml(pick(headline, "You do not need to perform as an art teacher."))}</h1>
         <p style="margin: 0 0 18px;">You need a clear exercise, a page to print, and a way to notice what changed.</p>
         <p style="margin: 0 0 18px;">That is why the kit is structured around practical table-ready lessons instead of long lectures.</p>
-        ${button(`${siteUrl}/start-here.html`, "Start With the Simplest Path")}
+        ${button(pick(primaryCtaUrl, `${siteUrl}/start-here.html`), pick(primaryCta, "Start With the Simplest Path"))}
       `
     })
   },
@@ -153,17 +154,17 @@ export const EMAIL_SEQUENCE = [
     delayDays: 7,
     subject: "Ready for the full Drawing Field Kit?",
     preview: "Here is the bridge from the free lesson to the full kit.",
-    body: ({ siteUrl, unsubscribeUrl }) => emailShell({
+    body: ({ siteUrl, unsubscribeUrl, headline, preview, heroImage, heroAlt, primaryCta, primaryCtaUrl }) => emailShell({
       title: "Ready for the full Drawing Field Kit?",
-      preview: "Here is the bridge from the free lesson to the full kit.",
+      preview: pick(preview, "Here is the bridge from the free lesson to the full kit."),
       siteUrl,
       unsubscribeUrl,
-      heroImage: fieldKitHero(siteUrl),
-      heroAlt: "Torch & Trowel Drawing Field Kit",
+      heroImage: pick(heroImage, fieldKitHero(siteUrl)),
+      heroAlt: pick(heroAlt, "Torch & Trowel Drawing Field Kit"),
       children: `
-        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">Ready for the full Drawing Field Kit?</h1>
+        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">${escapeHtml(pick(headline, "Ready for the full Drawing Field Kit?"))}</h1>
         <p style="margin: 0 0 18px;">If the free lesson gave your student a useful start, the full Drawing Field Kit gives you the next steps without needing a screen, subscription, or complicated setup.</p>
-        ${button(`${siteUrl}/drawing-field-kit.html`, "Get the Drawing Field Kit")}
+        ${button(pick(primaryCtaUrl, `${siteUrl}/drawing-field-kit.html`), pick(primaryCta, "Get the Drawing Field Kit"))}
       `
     })
   },
@@ -172,18 +173,18 @@ export const EMAIL_SEQUENCE = [
     delayDays: 10,
     subject: "A final nudge before this sequence ends",
     preview: "A simple way to keep drawing practice moving.",
-    body: ({ siteUrl, unsubscribeUrl }) => emailShell({
+    body: ({ siteUrl, unsubscribeUrl, headline, preview, heroImage, heroAlt, primaryCta, primaryCtaUrl }) => emailShell({
       title: "A final nudge before this sequence ends",
-      preview: "A simple way to keep drawing practice moving.",
+      preview: pick(preview, "A simple way to keep drawing practice moving."),
       siteUrl,
       unsubscribeUrl,
-      heroImage: fieldKitHero(siteUrl),
-      heroAlt: "Torch & Trowel Drawing Field Kit",
+      heroImage: pick(heroImage, fieldKitHero(siteUrl)),
+      heroAlt: pick(heroAlt, "Torch & Trowel Drawing Field Kit"),
       children: `
-        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">A final nudge before this sequence ends.</h1>
+        <h1 style="margin: 0 0 14px; color: #2f3340; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; line-height: 1.12;">${escapeHtml(pick(headline, "A final nudge before this sequence ends."))}</h1>
         <p style="margin: 0 0 18px;">Momentum usually comes from having the next printable page ready before enthusiasm fades.</p>
         <p style="margin: 0 0 18px;">The Drawing Field Kit is built for that exact moment.</p>
-        ${button(`${siteUrl}/drawing-field-kit.html`, "Continue With the Full Kit")}
+        ${button(pick(primaryCtaUrl, `${siteUrl}/drawing-field-kit.html`), pick(primaryCta, "Continue With the Full Kit"))}
       `
     })
   }
