@@ -1867,6 +1867,54 @@ p {
   text-transform: uppercase;
 }
 
+.comparison-mobile-cards {
+  display: none;
+}
+
+.comparison-mobile-cards article {
+  background: var(--white);
+  border: 1px solid rgba(184, 155, 54, 0.32);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.comparison-mobile-cards article.is-recommended {
+  background: rgba(255, 223, 31, 0.2);
+  border-color: rgba(184, 155, 54, 0.58);
+  box-shadow: inset 5px 0 0 var(--gold-bright);
+}
+
+.comparison-mobile-cards h3 {
+  color: var(--ink);
+  font-size: 19px;
+  margin: 0 0 14px;
+}
+
+.comparison-mobile-cards dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.comparison-mobile-cards dt {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 900;
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+
+.comparison-mobile-cards dt:first-child {
+  margin-top: 0;
+}
+
+.comparison-mobile-cards dd {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 4px 0 0;
+}
+
 .fit-section {
   display: grid;
   gap: 16px;
@@ -5342,6 +5390,16 @@ body.preview-open {
     margin-left: 16px;
     margin-right: 16px;
     padding: 22px;
+  }
+
+  .comparison-table-wrap {
+    display: none;
+  }
+
+  .comparison-mobile-cards {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
   }
 
   .guide-answer-card p {
