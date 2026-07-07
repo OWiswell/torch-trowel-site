@@ -14,6 +14,7 @@ Cloudflare Pages preview: https://torch-trowel-site.pages.dev/
 - [Drawing Field Kit Vol. 1](https://www.torchandtrowel.com/drawing-field-kit): product details, fit guidance, checkout expectations, and FAQs.
 - [Curriculum](https://www.torchandtrowel.com/curriculum): teaching philosophy and field-kit structure.
 - [Homeschool Art Curriculum Guide](https://www.torchandtrowel.com/homeschool-art-curriculum-guide): buyer education and comparison framework.
+- [Why Blank Pages Freeze Beginning Artists](https://www.torchandtrowel.com/why-guided-drawing-helps-beginners): explains the teaching rationale for guided drawing, decision overload, and structure before independence.
 - [About](https://www.torchandtrowel.com/about): founder background and curriculum intent.
 - [Policies](https://www.torchandtrowel.com/policies): terms, privacy, and refund information.
 
@@ -27,6 +28,7 @@ Cloudflare Pages preview: https://torch-trowel-site.pages.dev/
 - Main promise: real drawing skills without screens, parent art expertise, or heavy prep
 - Materials: printed pages, pencil, and eraser
 - Teaching pattern: student worksheet plus matching support guide
+- Teaching rationale: guided drawing reduces blank-page decision overload for beginners and builds toward independent drawing
 - Free offer: one screen-free drawing lesson sample
 - Checkout/payment: Stripe
 - Free lesson form endpoint: Cloudflare Pages Function at /api/subscribe

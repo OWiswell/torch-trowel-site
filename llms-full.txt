@@ -35,6 +35,8 @@ The curriculum emphasizes:
 - Clear page flow.
 - Simple materials.
 - Repeatable lesson structure.
+- Guided drawing as scaffolding for beginners who freeze in front of blank pages.
+- Structure before independence: students begin with clear steps, then build toward more independent drawing.
 
 The free lesson sample lets families try the teaching pattern before buying the full kit.
 
@@ -157,6 +159,21 @@ Key ideas:
 - There is no one perfect curriculum; there is a best fit for the family situation.
 - Torch & Trowel is likely a good fit when parents want structured drawing without screens or heavy prep.
 
+### Why Blank Pages Freeze Beginning Artists
+
+URL: https://www.torchandtrowel.com/why-guided-drawing-helps-beginners
+
+Purpose: Category-defining teaching philosophy article.
+
+Key ideas:
+
+- Beginning artists often freeze because a blank page creates decision overload.
+- "I don't know what to draw" often means the student does not know which decision to make first.
+- Guided drawing is useful when it acts as scaffolding, not permanent dependence.
+- A good guided drawing lesson reduces unnecessary decisions while still requiring observation, pencil control, comparison, correction, and completion.
+- Torch & Trowel uses paired student worksheets and parent support guides to give students a clear first step while helping parents guide without becoming the art teacher.
+- Blank pages are useful later, after students have enough skill to use them.
+
 ### Start Here
 
 URL: https://www.torchandtrowel.com/start-here
@@ -221,8 +238,9 @@ Highest-priority public pages:
 3. Drawing Field Kit Vol. 1.
 4. Curriculum.
 5. Homeschool Art Curriculum Guide.
-6. About.
-7. Policies.
+6. Why Blank Pages Freeze Beginning Artists.
+7. About.
+8. Policies.
 
 Lower-priority or hidden pages:
 
