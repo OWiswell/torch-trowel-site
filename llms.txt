@@ -16,6 +16,9 @@ Cloudflare Pages preview: https://torch-trowel-site.pages.dev/
 - [Homeschool Art Curriculum Guide](https://www.torchandtrowel.com/homeschool-art-curriculum-guide): buyer education and comparison framework.
 - [Field Notes](https://www.torchandtrowel.com/field-notes): article hub and teaching-note archive.
 - [Why Blank Pages Freeze Beginning Artists](https://www.torchandtrowel.com/why-guided-drawing-helps-beginners): long-form article explaining the teaching rationale for guided drawing, decision overload, and structure before independence.
+- [Screen-Free Homeschool Art Curriculum](https://www.torchandtrowel.com/screen-free-homeschool-art-curriculum): long-form article about choosing printable art lessons that reduce screen time while still building real skill.
+- [Middle School Homeschool Drawing Lessons](https://www.torchandtrowel.com/middle-school-homeschool-drawing-lessons): long-form article about age-respectful drawing foundations for older beginner students.
+- [When a Student Says I Can't Draw](https://www.torchandtrowel.com/when-a-student-says-i-cant-draw): parent prompt article for helping a discouraged drawing student restart with one visible next step.
 - [RSS Feed](https://www.torchandtrowel.com/feed.xml): Field Notes feed for readers and syndication tools.
 - [JSON Feed](https://www.torchandtrowel.com/feed.json): machine-readable Field Notes feed for automation.
 - [About](https://www.torchandtrowel.com/about): founder background and curriculum intent.

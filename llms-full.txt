@@ -174,6 +174,42 @@ Key ideas:
 - Torch & Trowel uses paired student worksheets and parent support guides to give students a clear first step while helping parents guide without becoming the art teacher.
 - Blank pages are useful later, after students have enough skill to use them.
 
+### Screen-Free Homeschool Art Curriculum
+
+URL: https://www.torchandtrowel.com/screen-free-homeschool-art-curriculum
+
+Purpose: Search-focused buyer education article for parents who want art without more screen time.
+
+Key ideas:
+
+- Screen-free art curriculum should do more than replace a video with paper.
+- A strong printable lesson gives the student a skill-building sequence and gives the parent enough support to avoid performing the lesson.
+- Torch & Trowel fits families who want pencil-and-paper drawing practice, visible progress, and low-prep parent guidance.
+
+### Middle School Homeschool Drawing Lessons
+
+URL: https://www.torchandtrowel.com/middle-school-homeschool-drawing-lessons
+
+Purpose: Search-focused article for families teaching older beginner artists.
+
+Key ideas:
+
+- Middle and high school students can be beginners without needing childish lessons.
+- Older beginners need foundational drawing skills presented in an age-respectful way.
+- Torch & Trowel teaches line control, shape, form, and observation through structured screen-free practice.
+
+### When a Student Says I Can't Draw
+
+URL: https://www.torchandtrowel.com/when-a-student-says-i-cant-draw
+
+Purpose: Search-focused parent prompt article for discouraged students.
+
+Key ideas:
+
+- "I can't draw" is often a signal that the task feels too large.
+- The parent should reduce the next step to one visible drawing decision instead of arguing with the feeling.
+- Scaffolded lessons help students build confidence through small, repeated evidence of progress.
+
 ### Start Here
 
 URL: https://www.torchandtrowel.com/start-here
@@ -239,8 +275,11 @@ Highest-priority public pages:
 4. Curriculum.
 5. Homeschool Art Curriculum Guide.
 6. Why Blank Pages Freeze Beginning Artists.
-7. About.
-8. Policies.
+7. Screen-Free Homeschool Art Curriculum.
+8. Middle School Homeschool Drawing Lessons.
+9. When a Student Says I Can't Draw.
+10. About.
+11. Policies.
 
 Lower-priority or hidden pages:
 
