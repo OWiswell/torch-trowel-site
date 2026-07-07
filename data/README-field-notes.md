@@ -1,6 +1,9 @@
 # Field Notes Content Feed
 
-Field Notes are rendered from `data/field-notes.json`.
+Field Notes have two layers:
+
+- Short practical notes are rendered from `data/field-notes.json`.
+- Long-form articles are regular HTML pages linked from `field-notes.html`, `feed.xml`, and `feed.json`.
 
 ## Current publishing flow
 
@@ -38,7 +41,7 @@ For social publishing, keep the website as the source of truth:
 
 1. Create or approve a Field Note.
 2. Generate the web post metadata and image crop.
-3. Push the post to the website feed.
+3. Push the post to the website feed (`feed.xml` and `feed.json` for articles, `data/field-notes.json` for short notes).
 4. Send adapted versions to Instagram and Pinterest.
 
 Instagram and Pinterest publishing should stay external to the static website. The site should display and archive the content; an automation or backend service should handle posting to those platforms.

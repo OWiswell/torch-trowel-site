@@ -1181,6 +1181,82 @@ p {
   width: 100%;
 }
 
+.field-feed-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.field-feed-links a {
+  border: 1px solid rgba(184, 155, 54, 0.42);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+  padding: 8px 12px;
+}
+
+.field-article-feature {
+  align-items: stretch;
+  border-bottom: 1px solid rgba(184, 155, 54, 0.34);
+  border-top: 1px solid rgba(184, 155, 54, 0.34);
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.62fr);
+  margin: 0 auto 68px;
+  max-width: var(--max);
+  padding: 34px 16px;
+}
+
+.field-article-feature h2 {
+  color: var(--ink);
+  font-size: 38px;
+  max-width: 680px;
+}
+
+.field-article-feature p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.48;
+  margin-top: 12px;
+  max-width: 680px;
+}
+
+.field-article-card {
+  background: var(--ink);
+  border-radius: 8px;
+  color: var(--white);
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+}
+
+.field-article-card span {
+  color: var(--gold-bright);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.field-article-card h3 {
+  color: var(--white);
+  font-size: 28px;
+  line-height: 1.05;
+}
+
+.field-article-card p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.field-article-card strong {
+  color: var(--gold-bright);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
 .field-notes-system {
   align-items: start;
   border-bottom: 1px solid rgba(184, 155, 54, 0.34);
@@ -1442,6 +1518,162 @@ p {
   margin: 70px auto 78px;
   max-width: var(--max);
   padding: 0 16px;
+}
+
+.article-page {
+  padding: 54px 0 100px;
+}
+
+.article-shell {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 16px;
+}
+
+.article-header {
+  margin: 0 auto 32px;
+  max-width: 760px;
+}
+
+.article-back-link {
+  color: var(--gold);
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.article-header h1 {
+  color: var(--ink);
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 0.96;
+  margin-top: 8px;
+}
+
+.article-deck {
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1.42;
+  margin-top: 20px;
+}
+
+.article-meta {
+  border-top: 1px solid rgba(184, 155, 54, 0.34);
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: 800;
+  gap: 10px 18px;
+  margin-top: 24px;
+  padding-top: 14px;
+}
+
+.article-hero-image {
+  margin: 0 auto 44px;
+  max-width: 860px;
+}
+
+.article-hero-image img {
+  aspect-ratio: 16 / 9;
+  background: var(--paper);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(16, 24, 35, 0.12);
+  object-fit: cover;
+  width: 100%;
+}
+
+.article-hero-image figcaption {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.article-body {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.article-body p,
+.article-body li {
+  color: #3f464e;
+  font-size: 19px;
+  line-height: 1.72;
+}
+
+.article-body p + p {
+  margin-top: 20px;
+}
+
+.article-body h2 {
+  color: var(--ink);
+  font-size: 34px;
+  line-height: 1.08;
+  margin: 46px 0 14px;
+}
+
+.article-body blockquote {
+  border-left: 4px solid var(--gold-bright);
+  margin: 38px 0;
+  padding: 8px 0 8px 22px;
+}
+
+.article-body blockquote p {
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.article-callout {
+  background: rgba(255, 223, 31, 0.18);
+  border: 1px solid rgba(184, 155, 54, 0.4);
+  border-radius: 8px;
+  margin: 38px 0;
+  padding: 22px;
+}
+
+.article-callout strong {
+  color: var(--gold);
+  display: block;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.article-callout p {
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.article-footer-cta {
+  background: var(--paper);
+  border-radius: 8px;
+  margin: 58px auto 0;
+  max-width: 760px;
+  padding: 32px;
+  text-align: center;
+}
+
+.article-footer-cta h2 {
+  color: var(--ink);
+  font-size: 34px;
+}
+
+.article-footer-cta p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 10px auto 0;
+  max-width: 560px;
+}
+
+.article-footer-cta .sales-actions {
+  justify-content: center;
 }
 
 .about-hero img {
@@ -4871,6 +5103,7 @@ body.preview-open {
   .about-hero,
   .field-notes-hero,
   .field-notes-system,
+  .field-article-feature,
   .field-notes-feed,
   .field-notes-cta,
   .start-hero,
@@ -5176,6 +5409,7 @@ body.preview-open {
   .about-hero,
   .field-notes-hero,
   .field-notes-system,
+  .field-article-feature,
   .field-feed-header,
   .field-featured-post,
   .field-posts.is-grid,
@@ -5321,6 +5555,7 @@ body.preview-open {
   .walkthrough-copy h2,
   .about-hero h1,
   .field-notes-system h2,
+  .field-article-feature h2,
   .field-feed-header h2,
   .field-featured-post h2,
   .field-notes-cta h2,
@@ -5438,6 +5673,7 @@ body.preview-open {
 
   .field-notes-hero,
   .field-notes-system,
+  .field-article-feature,
   .field-notes-feed,
   .field-notes-cta {
     margin-left: 16px;
@@ -5455,6 +5691,21 @@ body.preview-open {
     height: 220px;
   }
 
+  .field-article-feature {
+    gap: 18px;
+    margin-bottom: 56px;
+    padding-bottom: 26px;
+    padding-top: 26px;
+  }
+
+  .field-article-card {
+    padding: 22px;
+  }
+
+  .field-article-card h3 {
+    font-size: 24px;
+  }
+
   .field-featured-post__body,
   .field-notes-cta {
     padding: 24px 20px;
@@ -5462,6 +5713,37 @@ body.preview-open {
 
   .field-featured-post img {
     height: 240px;
+  }
+
+  .article-page {
+    padding-top: 34px;
+  }
+
+  .article-header h1 {
+    font-size: 42px;
+  }
+
+  .article-deck {
+    font-size: 19px;
+  }
+
+  .article-body p,
+  .article-body li {
+    font-size: 17px;
+    line-height: 1.68;
+  }
+
+  .article-body h2,
+  .article-footer-cta h2 {
+    font-size: 28px;
+  }
+
+  .article-body blockquote p {
+    font-size: 23px;
+  }
+
+  .article-footer-cta {
+    padding: 24px 20px;
   }
 
   .field-post-card {

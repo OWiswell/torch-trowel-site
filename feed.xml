@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Torch &amp; Trowel Field Notes</title>
+    <link>https://www.torchandtrowel.com/field-notes</link>
+    <atom:link href="https://www.torchandtrowel.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Articles and teaching notes about screen-free drawing, scaffolded art instruction, and helping students build real drawing skill.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Jul 2026 10:00:00 -0400</lastBuildDate>
+    <item>
+      <title>Why Blank Pages Freeze Beginning Artists</title>
+      <link>https://www.torchandtrowel.com/why-guided-drawing-helps-beginners</link>
+      <guid isPermaLink="true">https://www.torchandtrowel.com/why-guided-drawing-helps-beginners</guid>
+      <pubDate>Tue, 07 Jul 2026 10:00:00 -0400</pubDate>
+      <description>A blank page looks simple to an experienced artist. To a beginner, it can feel like being asked to solve every drawing problem at once.</description>
+    </item>
+  </channel>
+</rss>

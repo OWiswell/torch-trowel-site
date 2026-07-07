@@ -1,0 +1,29 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Torch & Trowel Field Notes",
+  "home_page_url": "https://www.torchandtrowel.com/field-notes",
+  "feed_url": "https://www.torchandtrowel.com/feed.json",
+  "description": "Articles and teaching notes about screen-free drawing, scaffolded art instruction, and helping students build real drawing skill.",
+  "author": {
+    "name": "Matt Tolbert",
+    "url": "https://www.tolbertm.com/"
+  },
+  "items": [
+    {
+      "id": "https://www.torchandtrowel.com/why-guided-drawing-helps-beginners",
+      "url": "https://www.torchandtrowel.com/why-guided-drawing-helps-beginners",
+      "title": "Why Blank Pages Freeze Beginning Artists",
+      "summary": "A blank page looks simple to an experienced artist. To a beginner, it can feel like being asked to solve every drawing problem at once.",
+      "content_text": "A blank page is not actually empty. For a beginning artist, it is full of invisible decisions. Guided drawing narrows the first few decisions so the student can begin, practice one visible skill at a time, and build toward independence.",
+      "image": "https://www.torchandtrowel.com/assets/field-notes/shapes-forms.png",
+      "date_published": "2026-07-07T10:00:00-04:00",
+      "tags": [
+        "guided drawing",
+        "beginner drawing",
+        "homeschool art",
+        "screen-free learning"
+      ],
+      "external_url": "https://www.torchandtrowel.com/why-guided-drawing-helps-beginners"
+    }
+  ]
+}

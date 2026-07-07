@@ -14,7 +14,10 @@ Cloudflare Pages preview: https://torch-trowel-site.pages.dev/
 - [Drawing Field Kit Vol. 1](https://www.torchandtrowel.com/drawing-field-kit): product details, fit guidance, checkout expectations, and FAQs.
 - [Curriculum](https://www.torchandtrowel.com/curriculum): teaching philosophy and field-kit structure.
 - [Homeschool Art Curriculum Guide](https://www.torchandtrowel.com/homeschool-art-curriculum-guide): buyer education and comparison framework.
-- [Why Blank Pages Freeze Beginning Artists](https://www.torchandtrowel.com/why-guided-drawing-helps-beginners): explains the teaching rationale for guided drawing, decision overload, and structure before independence.
+- [Field Notes](https://www.torchandtrowel.com/field-notes): article hub and teaching-note archive.
+- [Why Blank Pages Freeze Beginning Artists](https://www.torchandtrowel.com/why-guided-drawing-helps-beginners): long-form article explaining the teaching rationale for guided drawing, decision overload, and structure before independence.
+- [RSS Feed](https://www.torchandtrowel.com/feed.xml): Field Notes feed for readers and syndication tools.
+- [JSON Feed](https://www.torchandtrowel.com/feed.json): machine-readable Field Notes feed for automation.
 - [About](https://www.torchandtrowel.com/about): founder background and curriculum intent.
 - [Policies](https://www.torchandtrowel.com/policies): terms, privacy, and refund information.
 
