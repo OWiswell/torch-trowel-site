@@ -1,6 +1,57 @@
 {
-  "featured": "student-says-cant-draw",
+  "featured": "lines-in-control",
   "posts": [
+    {
+      "id": "lines-in-control",
+      "title": "Why the first lesson starts with lines.",
+      "category": "Unit 01 / Lines in Control",
+      "readTime": "4 min read",
+      "image": "./assets/field-notes/technique-tips.png",
+      "imageAlt": "Technique tips illustration from Torch and Trowel",
+      "excerpt": "Pencil control, line variety, and simple repeated marks give students a clear first step before drawings become complicated.",
+      "when": "Use this before or after the free Lines in Control lesson, especially if the work feels too simple at first glance.",
+      "tryThis": [
+        "Ask for three versions of the same line: light, slow, and darker.",
+        "Have the student compare which line looks most intentional.",
+        "Name the practice as control, not perfection."
+      ],
+      "why": "Lines are the first material students learn to control. Simple marks make progress visible before the student has to solve a whole drawing.",
+      "script": "“The goal is not a perfect line. The goal is a line your hand meant to make.”"
+    },
+    {
+      "id": "seeing-empty-space",
+      "title": "Look at the space around the object.",
+      "category": "Unit 02 / Seeing Empty Space",
+      "readTime": "4 min use",
+      "image": "./assets/field-notes/loose-contour-lines.png",
+      "imageAlt": "Loose contour line drawing example",
+      "excerpt": "Negative space helps students slow down and draw what they can observe instead of what they assume.",
+      "when": "Use this when a student keeps drawing the symbol of an object instead of checking the shape they actually see.",
+      "tryThis": [
+        "Ask the student to point to one empty shape around the object.",
+        "Compare that space to a nearby edge or opening.",
+        "Draw the empty shape lightly before adding detail."
+      ],
+      "why": "Seeing empty space gives beginners a concrete way to observe. It shifts attention from naming the object to comparing visible shapes.",
+      "script": "“Do not draw the name of the thing yet. Look at the space around it first.”"
+    },
+    {
+      "id": "building-simple-shapes",
+      "title": "Find the simple shape first.",
+      "category": "Unit 03 / Building Simple Shapes",
+      "readTime": "3 min use",
+      "image": "./assets/field-notes/shapes-forms.png",
+      "imageAlt": "Shape to form drawing example",
+      "excerpt": "Simple shapes and construction lines turn a complicated subject into something the student can begin.",
+      "when": "Use this when a student wants to draw a complicated object all at once and gets lost in details.",
+      "tryThis": [
+        "Ask the student to find the largest simple shape first.",
+        "Ignore texture and small details for one pass.",
+        "Use light construction lines before darkening anything."
+      ],
+      "why": "Simple shapes reduce visual overwhelm. Once the big shapes are placed, form and detail have somewhere to belong.",
+      "script": "“Before we draw the object, let’s find the simple shape hiding inside it.”"
+    },
     {
       "id": "student-says-cant-draw",
       "title": "When a student says, “I can’t draw.”",
@@ -85,23 +136,6 @@
       ],
       "why": "Ellipses improve when students observe the angle and width of the opening instead of relying on a memorized circle shape.",
       "script": "“Do not draw the idea of a circle. Look at the opening and draw the shape it is making from where you sit.”"
-    },
-    {
-      "id": "shapes-before-forms",
-      "title": "Shapes before forms.",
-      "category": "Teaching concept",
-      "readTime": "3 min use",
-      "image": "./assets/field-notes/shapes-forms.png",
-      "imageAlt": "Shape to form drawing example",
-      "excerpt": "Students draw objects better when they first learn to find simple flat shapes, then build those shapes into forms.",
-      "when": "Use this when a student wants to draw a complicated object all at once and gets lost in details.",
-      "tryThis": [
-        "Ask the student to find the largest simple shape first.",
-        "Ignore texture and small details for one pass.",
-        "Add form only after the basic shape relationship is clear."
-      ],
-      "why": "Simple shapes reduce visual overwhelm. Once the big shapes are placed, form and detail have somewhere to belong.",
-      "script": "“Before we draw the object, let’s find the simple shape hiding inside it.”"
     }
   ]
 }
