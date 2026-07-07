@@ -222,7 +222,7 @@ p {
 .site-nav {
   align-items: center;
   display: flex;
-  gap: 34px;
+  gap: 28px;
   font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 500;
@@ -241,6 +241,7 @@ p {
 .site-nav a:visited {
   color: inherit;
   transition: color var(--ease), transform var(--ease);
+  white-space: nowrap;
 }
 
 .site-nav a:hover,
@@ -631,6 +632,7 @@ p {
   padding: 12px 26px;
   text-align: center;
   transition: transform var(--ease), box-shadow var(--ease), background var(--ease), border-color var(--ease);
+  white-space: nowrap;
 }
 
 .button:hover,
@@ -5602,7 +5604,7 @@ body.preview-open {
 
   .buyer-question-banner .button {
     justify-self: stretch;
-    white-space: normal;
+    white-space: nowrap;
   }
 
   .guide-page {
