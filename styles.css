@@ -410,6 +410,16 @@ p {
   max-width: 610px;
 }
 
+.home-product-copy .home-product-note {
+  border-left: 3px solid var(--gold);
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  max-width: 560px;
+  padding-left: 14px;
+}
+
 .home-product-offer {
   align-items: baseline;
   border-bottom: 1px solid rgba(184, 155, 54, 0.34);
