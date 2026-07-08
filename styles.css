@@ -665,6 +665,156 @@ p {
   transform: translateY(0);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .button:hover,
+  .button:focus-visible {
+    box-shadow: 0 12px 28px rgba(20, 23, 30, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .home-product-preview,
+  .use-walkthrough,
+  .family-results,
+  .signup,
+  .field-article-feature,
+  .article-footer-cta,
+  .comparison-section,
+  .fit-section,
+  .risk-cost-section,
+  .download-landing,
+  .lesson-proof {
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .home-product-preview:hover,
+  .home-product-preview:focus-within,
+  .use-walkthrough:hover,
+  .use-walkthrough:focus-within,
+  .family-results:hover,
+  .family-results:focus-within,
+  .signup:hover,
+  .signup:focus-within,
+  .field-article-feature:hover,
+  .field-article-feature:focus-within,
+  .article-footer-cta:hover,
+  .article-footer-cta:focus-within,
+  .comparison-section:hover,
+  .comparison-section:focus-within,
+  .fit-section:hover,
+  .fit-section:focus-within,
+  .risk-cost-section:hover,
+  .risk-cost-section:focus-within,
+  .download-landing:hover,
+  .download-landing:focus-within,
+  .lesson-proof:hover,
+  .lesson-proof:focus-within {
+    box-shadow: 0 18px 44px rgba(20, 23, 30, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .walkthrough-steps article,
+  .home-proof-strip div,
+  .home-product-offer,
+  .family-results-grid blockquote,
+  .field-post-card,
+  .field-article-card,
+  .article-callout,
+  .guide-answer-card,
+  .comparison-takeaways article,
+  .decision-frame article,
+  .comparison-mobile-cards article,
+  .fit-card,
+  .credibility-grid article,
+  .method-grid article,
+  .principle-grid article,
+  .roadmap-grid article,
+  .unit-grid article,
+  .resource-card,
+  .sample-guide article,
+  .kit-flow article,
+  .include-grid article,
+  .after-download-steps article,
+  .parent-fit article,
+  .purchase-clarity-grid article,
+  .sample-today article {
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .walkthrough-steps article:hover,
+  .walkthrough-steps article:focus-within,
+  .home-proof-strip div:hover,
+  .home-product-offer:hover,
+  .family-results-grid blockquote:hover,
+  .family-results-grid blockquote:focus-within,
+  .field-post-card:hover,
+  .field-post-card:focus-within,
+  .field-article-card:hover,
+  .field-article-card:focus-within,
+  .article-callout:hover,
+  .guide-answer-card:hover,
+  .guide-answer-card:focus-within,
+  .comparison-takeaways article:hover,
+  .comparison-takeaways article:focus-within,
+  .decision-frame article:hover,
+  .decision-frame article:focus-within,
+  .comparison-mobile-cards article:hover,
+  .comparison-mobile-cards article:focus-within,
+  .fit-card:hover,
+  .fit-card:focus-within,
+  .credibility-grid article:hover,
+  .credibility-grid article:focus-within,
+  .method-grid article:hover,
+  .method-grid article:focus-within,
+  .principle-grid article:hover,
+  .principle-grid article:focus-within,
+  .roadmap-grid article:hover,
+  .roadmap-grid article:focus-within,
+  .unit-grid article:hover,
+  .unit-grid article:focus-within,
+  .resource-card:hover,
+  .resource-card:focus-within,
+  .sample-guide article:hover,
+  .sample-guide article:focus-within,
+  .kit-flow article:hover,
+  .kit-flow article:focus-within,
+  .include-grid article:hover,
+  .include-grid article:focus-within,
+  .after-download-steps article:hover,
+  .after-download-steps article:focus-within,
+  .parent-fit article:hover,
+  .parent-fit article:focus-within,
+  .purchase-clarity-grid article:hover,
+  .purchase-clarity-grid article:focus-within,
+  .sample-today article:hover,
+  .sample-today article:focus-within {
+    background-color: rgba(255, 255, 255, 0.96);
+    border-color: rgba(184, 155, 54, 0.34);
+    box-shadow: 0 16px 34px rgba(20, 23, 30, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .home-product-pages img,
+  .article-hero-image img,
+  .field-post-card img,
+  .family-results-grid blockquote,
+  .kit-visual .image-wrap,
+  .lesson-sheet-grid img,
+  .sales-kit img {
+    transition: box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .home-product-pages:hover img,
+  .article-hero-image:hover img,
+  .field-post-card:hover img,
+  .field-post-card:focus-within img,
+  .kit-visual:hover .image-wrap,
+  .lesson-sheet-grid img:hover,
+  .sales-kit:hover img {
+    box-shadow: 0 22px 46px rgba(20, 23, 30, 0.14);
+    transform: translateY(-2px) scale(1.012);
+  }
+}
+
 .button.small {
   font-size: 18px;
   min-height: 48px;
