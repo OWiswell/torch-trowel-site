@@ -672,53 +672,10 @@ p {
     transform: translateY(-2px);
   }
 
-  .home-product-preview,
-  .use-walkthrough,
-  .family-results,
-  .signup,
-  .field-article-feature,
-  .article-footer-cta,
-  .comparison-section,
-  .fit-section,
-  .risk-cost-section,
-  .download-landing,
-  .lesson-proof {
-    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-  }
-
-  .home-product-preview:hover,
-  .home-product-preview:focus-within,
-  .use-walkthrough:hover,
-  .use-walkthrough:focus-within,
-  .family-results:hover,
-  .family-results:focus-within,
-  .signup:hover,
-  .signup:focus-within,
-  .field-article-feature:hover,
-  .field-article-feature:focus-within,
-  .article-footer-cta:hover,
-  .article-footer-cta:focus-within,
-  .comparison-section:hover,
-  .comparison-section:focus-within,
-  .fit-section:hover,
-  .fit-section:focus-within,
-  .risk-cost-section:hover,
-  .risk-cost-section:focus-within,
-  .download-landing:hover,
-  .download-landing:focus-within,
-  .lesson-proof:hover,
-  .lesson-proof:focus-within {
-    box-shadow: 0 18px 44px rgba(20, 23, 30, 0.08);
-    transform: translateY(-2px);
-  }
-
   .walkthrough-steps article,
-  .home-proof-strip div,
-  .home-product-offer,
   .family-results-grid blockquote,
   .field-post-card,
   .field-article-card,
-  .article-callout,
   .guide-answer-card,
   .comparison-takeaways article,
   .decision-frame article,
@@ -742,15 +699,12 @@ p {
 
   .walkthrough-steps article:hover,
   .walkthrough-steps article:focus-within,
-  .home-proof-strip div:hover,
-  .home-product-offer:hover,
   .family-results-grid blockquote:hover,
   .family-results-grid blockquote:focus-within,
   .field-post-card:hover,
   .field-post-card:focus-within,
   .field-article-card:hover,
   .field-article-card:focus-within,
-  .article-callout:hover,
   .guide-answer-card:hover,
   .guide-answer-card:focus-within,
   .comparison-takeaways article:hover,
@@ -796,7 +750,6 @@ p {
   .home-product-pages img,
   .article-hero-image img,
   .field-post-card img,
-  .family-results-grid blockquote,
   .kit-visual .image-wrap,
   .lesson-sheet-grid img,
   .sales-kit img {
