@@ -311,11 +311,13 @@ p {
 
 .hero-image {
   background: #f2f2ef;
-  height: 305px;
-  margin: 0 auto 36px;
+  display: block;
+  height: clamp(360px, 38vw, 470px);
+  margin: 0 auto 38px;
+  max-width: 100%;
   object-fit: cover;
   object-position: center;
-  width: 928px;
+  width: min(1040px, 100%);
 }
 
 .hero-kicker {
@@ -5415,7 +5417,7 @@ body.preview-open {
   }
 
   .hero-image {
-    height: 246px;
+    height: clamp(285px, 64vw, 380px);
     margin-bottom: 28px;
     width: 100%;
   }
