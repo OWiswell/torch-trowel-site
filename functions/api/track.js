@@ -1,5 +1,11 @@
 import { isSameOriginRequest, json, recordAnalyticsEvent } from "../lib/db.js";
 
+const normalizePath = (value = "") => {
+  const path = String(value || "").trim();
+  if (!path || path === "/index.html") return "/";
+  return path.replace(/\.html$/, "");
+};
+
 export const onRequestPost = async ({ request, env }) => {
   if (!isSameOriginRequest(request)) {
     return json({ ok: false, error: "Invalid request origin" }, { status: 403 });
@@ -19,7 +25,7 @@ export const onRequestPost = async ({ request, env }) => {
 
   await recordAnalyticsEvent(env, eventName, {
     ...detail,
-    path: payload.path || payload.detail?.path || "",
+    path: normalizePath(payload.path || payload.detail?.path || ""),
     source: payload.source || payload.detail?.source || "",
     label: payload.label || payload.detail?.label || ""
   });

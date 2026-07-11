@@ -34,9 +34,14 @@ const getTrafficContext = () => {
   };
 };
 
+const normalizedPath = (path = window.location.pathname) => {
+  if (!path || path === "/index.html") return "/";
+  return path.replace(/\.html$/, "");
+};
+
 const trackConversionEvent = (eventName, detail = {}) => {
   if (!eventName) return;
-  const eventDetail = { ...getTrafficContext(), ...detail };
+  const eventDetail = { ...getTrafficContext(), ...detail, path: normalizedPath(detail.path || window.location.pathname) };
   window.zaraz?.track?.(eventName, eventDetail);
   window.dataLayer?.push({ event: eventName, ...eventDetail });
   window.plausible?.(eventName, { props: eventDetail });
@@ -44,7 +49,7 @@ const trackConversionEvent = (eventName, detail = {}) => {
   const payload = JSON.stringify({
     eventName,
     detail: eventDetail,
-    path: window.location.pathname
+    path: eventDetail.path
   });
 
   if (navigator.sendBeacon) {

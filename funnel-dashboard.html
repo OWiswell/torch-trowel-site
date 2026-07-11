@@ -77,10 +77,13 @@
           const r = data.rates;
           metrics.innerHTML = [
             metric("All page views", c.visits, `${data.days}-day total`),
+            metric("Free lesson clicks", c.freeLessonClicks, `${r.visitToFreeLessonClick}% of page views`),
             metric("Free lesson views", c.freeLessonViews, `${r.visitToFreeLesson}% of page views`),
             metric("Form starts", c.formStarts, `${r.freeLessonToFormStart}% of lesson views`),
             metric("New leads", c.formSubmits, `${r.formCompletion}% form completion`),
-            metric("Lesson downloads", c.downloads, `${c.formSubmits ? Math.round(c.downloads / c.formSubmits * 100) : 0}% of leads`),
+            metric("Sample page views", c.sampleViews, `${r.leadToSampleView}% of leads`),
+            metric("Lesson downloads", c.downloads, `${r.sampleViewToDownload}% of sample views`),
+            metric("Product clicks", c.productClicks, `${r.sampleViewToProductClick}% of sample views`),
             metric("Product views", c.productViews, `${r.leadToProductView}% relative to leads`),
             metric("Buy clicks", c.buyClicks, `${r.productToBuyClick}% of product views`),
             metric("Purchases", c.purchases, `${r.leadToPurchase}% of leads`)
