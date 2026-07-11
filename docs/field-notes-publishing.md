@@ -35,3 +35,7 @@ For each article, prepare:
 - CTA target: free lesson, Field Kit, or related article
 
 Do not auto-post everything without review. The website version can be final, but social copy usually needs cropping, shorter hooks, and platform-specific language.
+
+## First traffic sprint
+
+Use `docs/traffic-sprint-cant-draw.md` as the first practical publish-outward pack. It is intentionally small: one Field Note, one email, three Instagram ideas, three Pinterest pins, one TPT update, and four metrics to check.
