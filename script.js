@@ -1,15 +1,49 @@
 const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
+const analyticsSessionKey = "torchTrowelAnalyticsSession";
+
+const getAnalyticsSessionId = () => {
+  try {
+    let sessionId = window.sessionStorage.getItem(analyticsSessionKey);
+    if (!sessionId) {
+      sessionId = window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      window.sessionStorage.setItem(analyticsSessionKey, sessionId);
+    }
+    return sessionId;
+  } catch {
+    return "";
+  }
+};
+
+const getTrafficContext = () => {
+  const params = new URLSearchParams(window.location.search);
+  let referrerHost = "";
+  try {
+    referrerHost = document.referrer ? new URL(document.referrer).hostname : "";
+  } catch {
+    referrerHost = "";
+  }
+
+  return {
+    sessionId: getAnalyticsSessionId(),
+    referrerHost,
+    utmSource: params.get("utm_source") || "",
+    utmMedium: params.get("utm_medium") || "",
+    utmCampaign: params.get("utm_campaign") || ""
+  };
+};
+
 const trackConversionEvent = (eventName, detail = {}) => {
   if (!eventName) return;
-  window.zaraz?.track?.(eventName, detail);
-  window.dataLayer?.push({ event: eventName, ...detail });
-  window.plausible?.(eventName, { props: detail });
+  const eventDetail = { ...getTrafficContext(), ...detail };
+  window.zaraz?.track?.(eventName, eventDetail);
+  window.dataLayer?.push({ event: eventName, ...eventDetail });
+  window.plausible?.(eventName, { props: eventDetail });
 
   const payload = JSON.stringify({
     eventName,
-    detail,
+    detail: eventDetail,
     path: window.location.pathname
   });
 
@@ -25,6 +59,10 @@ const trackConversionEvent = (eventName, detail = {}) => {
     keepalive: true
   }).catch(() => {});
 };
+
+trackConversionEvent("page_view", {
+  title: document.title
+});
 
 const loadScript = (src) => new Promise((resolve, reject) => {
   if (document.querySelector(`script[src="${src}"]`)) {

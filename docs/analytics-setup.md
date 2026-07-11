@@ -82,3 +82,20 @@ Do not optimize everything at once. Watch these five numbers first:
 If form starts are high and submissions are low, improve the form.
 If downloads are high and buy clicks are low, improve the thank-you page and product bridge.
 If product views are high and buy clicks are low, improve objections, price clarity, and trust near the buy buttons.
+
+## Private Funnel Dashboard
+
+Open `/funnel-dashboard` to see the 7-, 30-, or 90-day funnel without running SQL manually. The dashboard reports page views, free-lesson visits, form starts, verified server-side submissions, downloads, product views, buy clicks, purchases, traffic sources, and top pages.
+
+Set `ANALYTICS_API_TOKEN` as a Cloudflare Pages secret. If it is not set, the API accepts the existing `TRACKER_API_TOKEN` instead. The token is stored only in the current browser's local storage after it is entered.
+
+Page views begin accumulating after the tracking script containing the `page_view` event is deployed. Older CTA and form events remain available, but old page-view conversion rates cannot be reconstructed.
+
+## Stripe Purchase Confirmation
+
+The `/api/stripe-webhook` endpoint records `purchase_completed` when Stripe sends a valid `checkout.session.completed` event.
+
+1. In Stripe, create a webhook endpoint at `https://www.torchandtrowel.com/api/stripe-webhook`.
+2. Subscribe it only to `checkout.session.completed`.
+3. Copy the endpoint signing secret into Cloudflare Pages as `STRIPE_WEBHOOK_SECRET`.
+4. Complete one test checkout and confirm `purchase_completed` appears in the funnel dashboard.

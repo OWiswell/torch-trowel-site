@@ -4271,6 +4271,10 @@ body.preview-open {
   min-width: 0;
 }
 
+.free-lesson-hero .free-preview-page:nth-child(n + 3) {
+  display: none;
+}
+
 .free-preview-page figcaption {
   color: var(--muted);
   font-size: 10px;
