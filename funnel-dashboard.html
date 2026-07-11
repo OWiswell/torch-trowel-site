@@ -16,12 +16,16 @@
       .funnel-controls input, .funnel-controls select { background: white; border: 1px solid #c9c6bc; border-radius: 4px; font: inherit; min-height: 42px; padding: 8px 10px; }
       .funnel-controls input { min-width: 250px; }
       .funnel-controls button { min-height: 42px; }
+      .token-status { color: #6f5b17; display: block; font-size: 12px; font-weight: 700; min-height: 16px; }
       .funnel-status { color: #606570; margin: 0 0 20px; }
       .funnel-grid { display: grid; gap: 12px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .funnel-card { background: white; border: 1px solid #dfd9c7; border-radius: 6px; padding: 18px; }
       .funnel-card span { color: #606570; display: block; font-size: 13px; font-weight: 700; min-height: 34px; }
       .funnel-card strong { color: #2f3340; display: block; font-family: Georgia, serif; font-size: 34px; line-height: 1; margin: 8px 0; }
       .funnel-card small { color: #8b6b13; font-weight: 700; }
+      .funnel-card details { border-top: 1px solid #ece8dd; margin-top: 14px; padding-top: 12px; }
+      .funnel-card summary { color: #2f3340; cursor: pointer; font-size: 13px; font-weight: 800; }
+      .funnel-card p { color: #606570; font-size: 13px; line-height: 1.45; margin: 10px 0 0; }
       .funnel-section { margin-top: 34px; }
       .funnel-section h2 { font-size: 26px; margin-bottom: 14px; }
       .funnel-table { background: white; border: 1px solid #dfd9c7; border-radius: 6px; overflow: hidden; }
@@ -41,8 +45,9 @@
         <div><p class="eyebrow">Private reporting</p><h1>Torch & Trowel Funnel</h1></div>
         <div class="funnel-controls">
           <label>Period<select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select></label>
-          <label>Analytics token<input id="token" type="password" autocomplete="off" placeholder="Paste analytics token"></label>
+          <label>Analytics token<input id="token" type="password" autocomplete="off" placeholder="Paste analytics token"><span id="token-status" class="token-status"></span></label>
           <button id="load" class="button component-button primary" type="button">Load report</button>
+          <button id="clear-token" class="button component-button secondary" type="button">Clear token</button>
         </div>
       </div>
       <p id="status" class="funnel-status">Enter the Cloudflare analytics token to load the report.</p>
@@ -55,19 +60,33 @@
       const daysInput = document.querySelector("#days");
       const status = document.querySelector("#status");
       const metrics = document.querySelector("#metrics");
+      const tokenStatus = document.querySelector("#token-status");
+      const tokenStorageKey = "torchTrowelAnalyticsToken";
       const storedToken = localStorage.getItem("torchTrowelAnalyticsToken") || "";
       tokenInput.value = storedToken;
+      tokenStatus.textContent = storedToken ? "Saved on this device" : "Not saved yet";
 
       const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character]));
-      const metric = (label, value, note) => `<article class="funnel-card"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong><small>${escapeHtml(note)}</small></article>`;
+      const metric = (label, value, note, explainer) => `<article class="funnel-card"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong><small>${escapeHtml(note)}</small><details><summary>What this means</summary><p>${escapeHtml(explainer)}</p></details></article>`;
       const rows = (items, labelKey) => items.length
         ? items.map((item) => `<div class="funnel-row"><span>${escapeHtml(item[labelKey] || "Unknown")}</span><strong>${escapeHtml(item.total)}</strong></div>`).join("")
         : '<p class="funnel-empty">No data yet for this period.</p>';
 
-      async function loadReport() {
+      function saveToken() {
         const token = tokenInput.value.trim();
+        if (!token) {
+          localStorage.removeItem(tokenStorageKey);
+          tokenStatus.textContent = "Not saved yet";
+          return "";
+        }
+        localStorage.setItem(tokenStorageKey, token);
+        tokenStatus.textContent = "Saved on this device";
+        return token;
+      }
+
+      async function loadReport() {
+        const token = saveToken();
         if (!token) { status.textContent = "Enter the analytics token first."; return; }
-        localStorage.setItem("torchTrowelAnalyticsToken", token);
         status.textContent = "Loading report...";
         try {
           const response = await fetch(`/api/analytics-summary?days=${daysInput.value}`, { headers: { Authorization: `Bearer ${token}` } });
@@ -76,17 +95,17 @@
           const c = data.counts;
           const r = data.rates;
           metrics.innerHTML = [
-            metric("All page views", c.visits, `${data.days}-day total`),
-            metric("Free lesson clicks", c.freeLessonClicks, `${r.visitToFreeLessonClick}% of page views`),
-            metric("Free lesson views", c.freeLessonViews, `${r.visitToFreeLesson}% of page views`),
-            metric("Form starts", c.formStarts, `${r.freeLessonToFormStart}% of lesson views`),
-            metric("New leads", c.formSubmits, `${r.formCompletion}% form completion`),
-            metric("Sample page views", c.sampleViews, `${r.leadToSampleView}% of leads`),
-            metric("Lesson downloads", c.downloads, `${r.sampleViewToDownload}% of sample views`),
-            metric("Product clicks", c.productClicks, `${r.sampleViewToProductClick}% of sample views`),
-            metric("Product views", c.productViews, `${r.leadToProductView}% relative to leads`),
-            metric("Buy clicks", c.buyClicks, `${r.productToBuyClick}% of product views`),
-            metric("Purchases", c.purchases, `${r.leadToPurchase}% of leads`)
+            metric("All page views", c.visits, `${data.days}-day total`, "Overall site activity. If this is low, the main issue is traffic rather than the page or offer."),
+            metric("Free lesson clicks", c.freeLessonClicks, `${r.visitToFreeLessonClick}% of page views`, "People who clicked a free-lesson call to action. If views are decent but clicks are low, the promise or button placement needs work."),
+            metric("Free lesson views", c.freeLessonViews, `${r.visitToFreeLesson}% of page views`, "People who reached the free lesson landing page. This should grow as traffic campaigns point to the lead magnet."),
+            metric("Form starts", c.formStarts, `${r.freeLessonToFormStart}% of lesson views`, "People who clicked into the form. If this is low, the page is not creating enough confidence before asking for email."),
+            metric("New leads", c.formSubmits, `${r.formCompletion}% form completion`, "Successful signups recorded by the server. If starts are high but leads are low, simplify the form or check Turnstile friction."),
+            metric("Sample page views", c.sampleViews, `${r.leadToSampleView}% of leads`, "People who reached the download page after signup. If this is low, the redirect or email delivery path needs attention."),
+            metric("Lesson downloads", c.downloads, `${r.sampleViewToDownload}% of sample views`, "People who clicked the actual lesson download. If this is low, make the download button more obvious and reduce distractions."),
+            metric("Product clicks", c.productClicks, `${r.sampleViewToProductClick}% of sample views`, "People moving from the free lesson path toward the Field Kit. If this is low, strengthen the bridge from sample to full kit."),
+            metric("Product views", c.productViews, `${r.leadToProductView}% relative to leads`, "People who viewed the sales page. If product clicks are high but views are low, check links or page loading."),
+            metric("Buy clicks", c.buyClicks, `${r.productToBuyClick}% of product views`, "People who clicked through to checkout. If product views are high but buy clicks are low, improve proof, objections, and offer clarity."),
+            metric("Purchases", c.purchases, `${r.leadToPurchase}% of leads`, "Confirmed purchases from the Stripe webhook. If buy clicks are high but purchases are low, inspect Stripe checkout, price resistance, or trust at checkout.")
           ].join("");
           document.querySelector("#sources").innerHTML = rows(data.sources, "source");
           document.querySelector("#paths").innerHTML = rows(data.paths, "path");
@@ -96,7 +115,13 @@
         }
       }
 
+      tokenInput.addEventListener("input", saveToken);
       document.querySelector("#load").addEventListener("click", loadReport);
+      document.querySelector("#clear-token").addEventListener("click", () => {
+        tokenInput.value = "";
+        saveToken();
+        status.textContent = "Token cleared on this device.";
+      });
       daysInput.addEventListener("change", () => { if (tokenInput.value.trim()) loadReport(); });
       if (storedToken) loadReport();
     </script>
