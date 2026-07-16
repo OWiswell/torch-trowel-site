@@ -5375,18 +5375,24 @@ body.preview-open {
   }
 
   .site-header {
+    gap: 16px;
+    justify-content: space-between;
+    max-width: none;
     padding: 36px 16px 18px;
   }
 
   .brand img {
     height: 28px;
+    width: auto;
   }
 
   .menu-toggle {
+    flex: 0 0 44px;
     display: block;
   }
 
   .site-nav {
+    align-items: stretch;
     background: var(--white);
     border: 1px solid #eeeeee;
     border-radius: 8px;
@@ -5396,10 +5402,19 @@ body.preview-open {
     gap: 18px;
     padding: 24px;
     position: absolute;
-    left: auto;
+    left: 16px;
     right: 16px;
     top: 86px;
-    width: min(260px, calc(100vw - 32px));
+    width: auto;
+  }
+
+  .site-nav a {
+    align-self: flex-start;
+  }
+
+  .site-nav .nav-cta {
+    align-self: flex-start;
+    margin-left: 0;
   }
 
   .site-nav.is-open {
