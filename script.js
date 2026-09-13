@@ -411,10 +411,15 @@ document.querySelectorAll("[data-field-notes]").forEach(async (fieldNotes) => {
         ${renderMeta(post)}
         <h2>${escapeHtml(post.title)}</h2>
         <p>${escapeHtml(post.excerpt)}</p>
-        ${post.when ? `<p class="field-post-action-note">${icons.action}${escapeHtml(post.when)}</p>` : ""}
-        ${Array.isArray(post.tryThis) ? `<div class="field-note-section"><h3>Try this</h3><ol>${post.tryThis.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></div>` : ""}
-        ${post.why ? `<div class="field-note-section"><h3>Why it helps</h3><p>${escapeHtml(post.why)}</p></div>` : ""}
-        ${post.script ? `<p class="field-note-script">${icons.script}<span>${escapeHtml(post.script)}</span></p>` : ""}
+        <details class="field-note-details">
+          <summary>Show the practical steps</summary>
+          <div class="field-note-details__content">
+            ${post.when ? `<p class="field-post-action-note">${icons.action}${escapeHtml(post.when)}</p>` : ""}
+            ${Array.isArray(post.tryThis) ? `<div class="field-note-section"><h3>Try this</h3><ol>${post.tryThis.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></div>` : ""}
+            ${post.why ? `<div class="field-note-section"><h3>Why it helps</h3><p>${escapeHtml(post.why)}</p></div>` : ""}
+            ${post.script ? `<p class="field-note-script">${icons.script}<span>${escapeHtml(post.script)}</span></p>` : ""}
+          </div>
+        </details>
       </div>
     </article>
   `;
@@ -433,6 +438,20 @@ document.querySelectorAll("[data-field-notes]").forEach(async (fieldNotes) => {
       .filter((post) => post.id !== featured.id)
       .map(renderCard)
       .join("");
+
+    if (postList.children.length > 4) {
+      const showAll = document.createElement("button");
+      showAll.className = "field-notes-more button secondary";
+      showAll.type = "button";
+      showAll.textContent = "Show all Field Notes";
+      showAll.setAttribute("aria-expanded", "false");
+      showAll.addEventListener("click", () => {
+        const expanded = postList.classList.toggle("shows-all");
+        showAll.textContent = expanded ? "Show fewer Field Notes" : "Show all Field Notes";
+        showAll.setAttribute("aria-expanded", String(expanded));
+      });
+      postList.after(showAll);
+    }
   } catch (error) {
     featuredTarget.innerHTML = `
       <div class="field-featured-post__body">
@@ -672,3 +691,52 @@ const initializeMotion = () => {
 };
 
 initializeMotion();
+
+const initializeMobileDisclosures = () => {
+  const groups = [
+    ".principle-strip-list > article",
+    ".principle-grid > article",
+    ".include-grid > article",
+    ".parent-fit-grid > article",
+    ".purchase-clarity-grid > article",
+    ".faq-grid > article",
+    ".risk-grid > article",
+    ".method-grid > article",
+    ".credibility-grid > article"
+  ];
+
+  document.querySelectorAll(groups.join(",")).forEach((card, index) => {
+    const heading = card.querySelector("h2, h3");
+    if (!heading || card.querySelector(":scope > .mobile-disclosure-toggle")) return;
+
+    const contentId = `mobile-disclosure-${index + 1}`;
+    const content = document.createElement("div");
+    content.className = "mobile-disclosure-content";
+    content.id = contentId;
+    const contentInner = document.createElement("div");
+    contentInner.className = "mobile-disclosure-content__inner";
+
+    Array.from(card.children).forEach((child) => {
+      if (child !== heading && !child.matches("span:first-child")) contentInner.appendChild(child);
+    });
+    content.appendChild(contentInner);
+
+    const toggle = document.createElement("button");
+    toggle.className = "mobile-disclosure-toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-controls", contentId);
+    toggle.innerHTML = `<span>${heading.textContent}</span><span class="mobile-disclosure-icon" aria-hidden="true">+</span>`;
+    heading.after(toggle);
+    card.appendChild(content);
+
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      card.classList.toggle("is-expanded", !expanded);
+      toggle.querySelector(".mobile-disclosure-icon").textContent = expanded ? "+" : "-";
+    });
+  });
+};
+
+initializeMobileDisclosures();

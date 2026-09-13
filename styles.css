@@ -1016,6 +1016,312 @@ p {
   }
 }
 
+/* Mobile usability pass: scan-first layouts, comfortable targets, and restrained motion. */
+.field-note-details {
+  border-top: 1px solid rgba(184, 155, 54, 0.3);
+  margin-top: 18px;
+  padding-top: 12px;
+}
+
+.field-note-details summary {
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 900;
+  list-style: none;
+  min-height: 44px;
+  padding: 10px 34px 10px 0;
+  position: relative;
+}
+
+.field-note-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.field-note-details summary::after {
+  content: "+";
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 1;
+  position: absolute;
+  right: 4px;
+  top: 8px;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+
+.field-note-details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.field-note-details__content {
+  animation: tt-details-in var(--duration-fast) var(--ease-smooth-out) both;
+}
+
+@keyframes tt-details-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mobile-disclosure-toggle {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  display: none;
+  font: inherit;
+  text-align: left;
+}
+
+.field-notes-more {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .sales-hero .sales-actions .button,
+  .final-cta .sales-actions .button {
+    box-sizing: border-box;
+    font-size: 17px;
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 100%;
+  }
+
+  .field-notes-feed .field-posts > .field-post-card:nth-child(n + 5) {
+    display: none;
+  }
+
+  .field-notes-feed .field-posts.shows-all > .field-post-card {
+    display: grid;
+  }
+
+  .field-notes-more {
+    display: inline-flex;
+    font-size: 16px;
+    margin: 22px auto 0;
+    min-height: 48px;
+  }
+
+  .curriculum-hero h1 {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .sales-hero,
+  .sales-hero > *,
+  .sales-hero h1 {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    width: auto;
+  }
+
+  .menu-toggle,
+  .audio-toggle,
+  .quote-carousel button,
+  .unit-card-action,
+  .unit-card-close,
+  .lesson-carousel-controls > button,
+  .field-layout-toggle button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .menu-toggle {
+    height: 44px;
+  }
+
+  .audio-toggle {
+    height: 44px;
+    width: 44px;
+  }
+
+  .audio-toggle::before {
+    left: 17px;
+    top: 15px;
+  }
+
+  .audio-player.is-playing .audio-toggle::before {
+    left: 17px;
+    top: 15px;
+  }
+
+  .unit-card-action {
+    padding: 8px 4px;
+  }
+
+  .unit-card-close {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    right: 12px;
+    top: 10px;
+  }
+
+  .lesson-carousel-controls {
+    gap: 6px;
+  }
+
+  .lesson-carousel-controls > button {
+    height: 44px;
+    width: 44px;
+  }
+
+  .lesson-carousel-dots {
+    gap: 0;
+  }
+
+  .lesson-carousel-dots button {
+    background: transparent;
+    height: 44px;
+    position: relative;
+    width: 44px;
+  }
+
+  .lesson-carousel-dots button::after {
+    background: rgba(63, 70, 78, 0.24);
+    border-radius: 999px;
+    content: "";
+    height: 8px;
+    inset: 18px 8px;
+    position: absolute;
+  }
+
+  .lesson-carousel-dots button.is-active {
+    background: transparent;
+    transform: none;
+  }
+
+  .lesson-carousel-dots button.is-active::after {
+    background: var(--gold);
+    transform: scaleX(1.18);
+  }
+
+  .field-layout-toggle button {
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .lead-form input,
+  .lead-form .button,
+  .free-lesson-form input,
+  .free-lesson-form .button {
+    min-height: 48px;
+  }
+
+  .article-header h1 {
+    font-size: 35px;
+    line-height: 1.08;
+  }
+
+  .policy-page h1 {
+    font-size: 36px;
+    line-height: 1.08;
+  }
+
+  .about-hero {
+    text-align: left;
+  }
+
+  .about-hero > div {
+    grid-row: 1;
+  }
+
+  .about-hero > img {
+    grid-row: 2;
+  }
+
+  .about-hero img {
+    margin-left: 0;
+  }
+
+  .mobile-disclosure-toggle {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 900;
+    gap: 14px;
+    justify-content: space-between;
+    line-height: 1.25;
+    min-height: 48px;
+    padding: 8px 0;
+    width: 100%;
+  }
+
+  .mobile-disclosure-icon {
+    align-items: center;
+    border: 1px solid rgba(16, 24, 35, 0.22);
+    border-radius: 50%;
+    display: inline-flex;
+    flex: 0 0 32px;
+    font-size: 22px;
+    height: 32px;
+    justify-content: center;
+    transition: background var(--duration-fast) ease, transform var(--duration-fast) var(--ease-smooth-out);
+  }
+
+  .mobile-disclosure-toggle[aria-expanded="true"] .mobile-disclosure-icon {
+    background: var(--gold-bright);
+    transform: rotate(180deg);
+  }
+
+  .mobile-disclosure-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows var(--duration-medium) var(--ease-smooth-out), opacity var(--duration-fast) ease;
+  }
+
+  .mobile-disclosure-content > * {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .is-expanded > .mobile-disclosure-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .principle-strip-list > article,
+  .principle-grid > article,
+  .include-grid > article,
+  .parent-fit-grid > article,
+  .purchase-clarity-grid > article,
+  .faq-grid > article,
+  .risk-grid > article,
+  .method-grid > article,
+  .credibility-grid > article {
+    min-height: 0;
+    padding-bottom: 12px;
+    padding-top: 12px;
+  }
+
+  .field-notes-feed,
+  .lesson-context-carousel,
+  .after-download,
+  .parent-fit,
+  .sales-units,
+  .purchase-details,
+  .purchase-clarity,
+  .faq,
+  .risk-cost-section,
+  .method-proof {
+    margin-bottom: 44px;
+    margin-top: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-note-details__content {
+    animation: none;
+  }
+
+  .mobile-disclosure-content,
+  .mobile-disclosure-icon,
+  .field-note-details summary::after {
+    transition: none;
+  }
+}
+
 .button.small {
   font-size: 18px;
   min-height: 48px;
@@ -6614,5 +6920,144 @@ body.preview-open {
   .home-product-pages.is-reacting img:last-child,
   .home-product-pages.is-reacting:hover img:last-child {
     transform: rotate(3deg) translateX(-8px) translateY(8px);
+  }
+}
+
+/* Cascade guard for mobile rules that intentionally override legacy page styles. */
+@media (max-width: 760px) {
+  .curriculum-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .sales-hero,
+  .sales-hero > *,
+  .sales-hero h1 {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    width: auto;
+  }
+
+  .menu-toggle,
+  .audio-toggle,
+  .quote-carousel button,
+  .unit-card-action,
+  .unit-card-close,
+  .lesson-carousel-controls > button,
+  .lesson-carousel-dots button,
+  .field-layout-toggle button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .menu-toggle,
+  .audio-toggle,
+  .lesson-carousel-controls > button {
+    height: 44px;
+    width: 44px;
+  }
+
+  .audio-toggle::before,
+  .audio-player.is-playing .audio-toggle::before {
+    left: 17px;
+    top: 15px;
+  }
+
+  .lesson-carousel-controls {
+    gap: 6px;
+  }
+
+  .lesson-carousel-dots {
+    gap: 0;
+  }
+
+  .lesson-carousel-dots button,
+  .lesson-carousel-dots button.is-active {
+    background: transparent;
+    height: 44px;
+    position: relative;
+    transform: none;
+    width: 44px;
+  }
+
+  .lesson-carousel-dots button::after {
+    background: rgba(63, 70, 78, 0.24);
+    border-radius: 999px;
+    content: "";
+    height: 8px;
+    inset: 18px 8px;
+    position: absolute;
+  }
+
+  .lesson-carousel-dots button.is-active::after {
+    background: var(--gold);
+    transform: scaleX(1.18);
+  }
+
+  .lead-form input,
+  .lead-form .button,
+  .free-lesson-form input,
+  .free-lesson-form .button {
+    min-height: 48px;
+  }
+
+  .article-header h1 {
+    font-size: 35px;
+    line-height: 1.08;
+  }
+
+  .policy-page h1 {
+    font-size: 36px;
+    line-height: 1.08;
+  }
+
+  .about-hero {
+    text-align: left;
+  }
+
+  .about-hero > div {
+    grid-row: 1;
+  }
+
+  .about-hero > img {
+    grid-row: 2;
+    margin-left: 0;
+  }
+
+  .principle-strip-list > article > h2,
+  .principle-strip-list > article > h3,
+  .principle-grid > article > h2,
+  .principle-grid > article > h3,
+  .include-grid > article > h2,
+  .include-grid > article > h3,
+  .parent-fit-grid > article > h2,
+  .parent-fit-grid > article > h3,
+  .purchase-clarity-grid > article > h2,
+  .purchase-clarity-grid > article > h3,
+  .faq-grid > article > h2,
+  .faq-grid > article > h3,
+  .risk-grid > article > h2,
+  .risk-grid > article > h3,
+  .method-grid > article > h2,
+  .method-grid > article > h3,
+  .credibility-grid > article > h2,
+  .credibility-grid > article > h3 {
+    display: none;
+  }
+
+  .field-notes-feed,
+  .lesson-context-carousel,
+  .after-download,
+  .parent-fit,
+  .sales-units,
+  .purchase-details,
+  .purchase-clarity,
+  .faq,
+  .risk-cost-section,
+  .method-proof {
+    margin-bottom: 44px;
+    margin-top: 44px;
   }
 }
