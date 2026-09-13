@@ -126,24 +126,36 @@ document.querySelectorAll("[data-event]").forEach((target) => {
 });
 
 if (menuButton && nav) {
+  const menuCloseMs = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue("--dropdown-close-dur")
+  ) || 150;
+
+  const openMenu = () => {
+    nav.classList.remove("is-closing");
+    nav.classList.add("is-open");
+    menuButton.setAttribute("aria-expanded", "true");
+  };
+
+  const closeMenu = () => {
+    if (!nav.classList.contains("is-open")) return;
+    nav.classList.remove("is-open");
+    nav.classList.add("is-closing");
+    menuButton.setAttribute("aria-expanded", "false");
+    window.setTimeout(() => nav.classList.remove("is-closing"), menuCloseMs);
+  };
+
   menuButton.addEventListener("click", () => {
     const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!isOpen));
-    nav.classList.toggle("is-open", !isOpen);
+    if (isOpen) closeMenu();
+    else openMenu();
   });
 
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menuButton.setAttribute("aria-expanded", "false");
-      nav.classList.remove("is-open");
-    });
+    link.addEventListener("click", closeMenu);
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      menuButton.setAttribute("aria-expanded", "false");
-      nav.classList.remove("is-open");
-    }
+    if (event.key === "Escape") closeMenu();
   });
 }
 
@@ -465,11 +477,17 @@ if (previewTriggers.length) {
   const closeButton = lightbox.querySelector(".preview-lightbox__close");
   let lastFocused = null;
 
+  const modalCloseMs = 150;
   const closePreview = () => {
+    if (!lightbox.classList.contains("is-open")) return;
     lightbox.classList.remove("is-open");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("preview-open");
-    lastFocused?.focus();
+    lightbox.classList.add("is-closing");
+    window.setTimeout(() => {
+      lightbox.classList.remove("is-closing");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("preview-open");
+      lastFocused?.focus();
+    }, modalCloseMs);
   };
 
   previewTriggers.forEach((trigger) => {
@@ -498,6 +516,7 @@ if (previewTriggers.length) {
           ${arrow}
         `;
       }).join("");
+      lightbox.classList.remove("is-closing");
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("preview-open");
@@ -562,3 +581,94 @@ document.querySelectorAll("[data-audio-player]").forEach((player) => {
   audio.addEventListener("ended", update);
   update();
 });
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const initializeMotion = () => {
+  document.body.classList.add("motion-ready");
+  requestAnimationFrame(() => document.body.classList.add("motion-loaded"));
+
+  const revealSelector = [
+    "main > section:not(.hero)",
+    "main > article",
+    ".walkthrough-steps > article",
+    ".family-results-grid > blockquote",
+    ".principle-strip-list > article",
+    ".unit-grid > article",
+    ".resource-grid > article",
+    ".method-grid > article",
+    ".credibility-grid > article",
+    ".comparison-mobile-cards > article",
+    ".after-download-steps > article",
+    ".purchase-clarity-grid > article"
+  ].join(",");
+
+  const revealObserver = reduceMotion.matches ? null : new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+
+  const registerReveal = (element, index = 0) => {
+    if (element.classList.contains("motion-reveal")) return;
+    element.classList.add("motion-reveal");
+    element.style.setProperty("--motion-delay", `${Math.min(index % 4, 3) * 55}ms`);
+    if (reduceMotion.matches) element.classList.add("is-visible");
+    else revealObserver.observe(element);
+  };
+
+  document.querySelectorAll(revealSelector).forEach(registerReveal);
+
+  const mutationObserver = new MutationObserver((records) => {
+    records.forEach((record) => record.addedNodes.forEach((node) => {
+      if (!(node instanceof Element)) return;
+      if (node.matches(revealSelector)) registerReveal(node);
+      node.querySelectorAll?.(revealSelector).forEach(registerReveal);
+    }));
+  });
+  mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+  if (reduceMotion.matches || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  document.querySelectorAll(".button").forEach((button) => {
+    button.addEventListener("pointermove", (event) => {
+      const bounds = button.getBoundingClientRect();
+      const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 7;
+      const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 5;
+      button.style.setProperty("--magnet-x", `${x.toFixed(2)}px`);
+      button.style.setProperty("--magnet-y", `${y.toFixed(2)}px`);
+    });
+    button.addEventListener("pointerleave", () => {
+      button.style.setProperty("--magnet-x", "0px");
+      button.style.setProperty("--magnet-y", "0px");
+    });
+  });
+
+  const addPointerDepth = (element, prefix, maxTilt) => {
+    if (!element) return;
+    element.addEventListener("pointermove", (event) => {
+      const bounds = element.getBoundingClientRect();
+      const x = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
+      const y = Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height));
+      element.classList.add("is-reacting");
+      element.style.setProperty(`--${prefix}-ry`, `${((x - 0.5) * maxTilt).toFixed(2)}deg`);
+      element.style.setProperty(`--${prefix}-rx`, `${((0.5 - y) * maxTilt).toFixed(2)}deg`);
+    });
+    element.addEventListener("pointerleave", () => {
+      element.classList.remove("is-reacting");
+      element.style.setProperty(`--${prefix}-rx`, "0deg");
+      element.style.setProperty(`--${prefix}-ry`, "0deg");
+    });
+  };
+
+  addPointerDepth(document.querySelector(".hero-image"), "hero", 3.5);
+  document.querySelectorAll(".home-product-pages, .kit-visual, .sales-kit, .article-hero-image")
+    .forEach((element) => {
+      element.classList.add("motion-product-visual");
+      addPointerDepth(element, "visual", 5);
+    });
+};
+
+initializeMotion();
