@@ -1,3 +1,17 @@
+const googleAnalyticsId = "G-Y6H95G7RKD";
+
+window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function gtag() {
+  window.dataLayer.push(arguments);
+};
+window.gtag("js", new Date());
+window.gtag("config", googleAnalyticsId);
+
+const googleTag = document.createElement("script");
+googleTag.async = true;
+googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`;
+document.head.append(googleTag);
+
 const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
