@@ -351,12 +351,12 @@ document.querySelectorAll(".mobile-conversion-bar").forEach((bar) => {
 });
 
 document.querySelectorAll("[data-field-notes]").forEach(async (fieldNotes) => {
-  const featuredTarget = fieldNotes.querySelector("[data-featured-post]");
   const postList = fieldNotes.querySelector("[data-post-list]");
-  const layoutButtons = Array.from(fieldNotes.querySelectorAll("[data-field-layout]"));
+  const filterButtons = Array.from(fieldNotes.querySelectorAll("[data-field-filter]"));
+  const status = fieldNotes.querySelector("[data-field-status]");
   const feedUrl = fieldNotes.dataset.feed;
 
-  if (!featuredTarget || !postList || !feedUrl) return;
+  if (!postList || !feedUrl) return;
 
   const escapeHtml = (value = "") => String(value)
     .replaceAll("&", "&amp;")
@@ -364,64 +364,16 @@ document.querySelectorAll("[data-field-notes]").forEach(async (fieldNotes) => {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
 
-  const icons = {
-    tag: '<svg class="field-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 13.5 13.5 20 4 10.5V4h6.5L20 13.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path><circle cx="8" cy="8" r="1.5" fill="currentColor"></circle></svg>',
-    clock: '<svg class="field-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>',
-    action: '<svg class="field-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v18M5 10l7-7 7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>',
-    script: '<svg class="field-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 6h14M5 12h10M5 18h12" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>'
-  };
-
-  const renderMeta = (post) => `
-    <p class="field-post-meta">
-      <span>${icons.tag}${escapeHtml(post.category)}</span>
-      <span>${icons.clock}${escapeHtml(post.readTime)}</span>
-    </p>
-  `;
-
-  const renderFeatured = (post) => {
-    const tryThis = Array.isArray(post.tryThis)
-      ? `<div class="field-note-section"><h3>Try this</h3><ol>${post.tryThis.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></div>`
-      : "";
-    const when = post.when
-      ? `<p class="field-post-action-note">${icons.action}${escapeHtml(post.when)}</p>`
-      : "";
-    const why = post.why ? `<div class="field-note-section"><h3>Why it helps</h3><p>${escapeHtml(post.why)}</p></div>` : "";
-    const script = post.script ? `<p class="field-note-script">${icons.script}<span>${escapeHtml(post.script)}</span></p>` : "";
-
-    featuredTarget.id = post.id;
-    featuredTarget.innerHTML = `
-      <div class="field-featured-post__body">
-        <p class="eyebrow">Start here</p>
-        ${renderMeta(post)}
-        <h2>${escapeHtml(post.title)}</h2>
-        <p>${escapeHtml(post.excerpt)}</p>
-        ${when}
-        ${tryThis}
-        ${why}
-        ${script}
-      </div>
-      <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt)}">
-    `;
-  };
-
   const renderCard = (post) => `
-    <article id="${escapeHtml(post.id)}" class="field-post-card">
+    <a id="${escapeHtml(post.id)}" class="field-index-card" href="./field-note.html?note=${encodeURIComponent(post.id)}">
       <img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt)}">
-      <div class="field-post-card__body">
-        ${renderMeta(post)}
-        <h2>${escapeHtml(post.title)}</h2>
+      <div>
+        <p class="field-index-card__meta"><span>${escapeHtml(post.category)}</span><span>${escapeHtml(post.readTime)}</span></p>
+        <h3>${escapeHtml(post.title)}</h3>
         <p>${escapeHtml(post.excerpt)}</p>
-        <details class="field-note-details">
-          <summary>Show the practical steps</summary>
-          <div class="field-note-details__content">
-            ${post.when ? `<p class="field-post-action-note">${icons.action}${escapeHtml(post.when)}</p>` : ""}
-            ${Array.isArray(post.tryThis) ? `<div class="field-note-section"><h3>Try this</h3><ol>${post.tryThis.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></div>` : ""}
-            ${post.why ? `<div class="field-note-section"><h3>Why it helps</h3><p>${escapeHtml(post.why)}</p></div>` : ""}
-            ${post.script ? `<p class="field-note-script">${icons.script}<span>${escapeHtml(post.script)}</span></p>` : ""}
-          </div>
-        </details>
+        <strong>Read note <span aria-hidden="true">-&gt;</span></strong>
       </div>
-    </article>
+    </a>
   `;
 
   try {
@@ -429,51 +381,92 @@ document.querySelectorAll("[data-field-notes]").forEach(async (fieldNotes) => {
     if (!response.ok) throw new Error("Field Notes feed failed");
     const feed = await response.json();
     const posts = Array.isArray(feed.posts) ? feed.posts : [];
-    const featured = posts.find((post) => post.id === feed.featured) || posts[0];
+    let activeFilter = "all";
+    let expanded = false;
+    const showAll = document.createElement("button");
+    showAll.className = "field-notes-more button secondary";
+    showAll.type = "button";
 
-    if (!featured) return;
-
-    renderFeatured(featured);
-    postList.innerHTML = posts
-      .filter((post) => post.id !== featured.id)
-      .map(renderCard)
-      .join("");
-
-    if (postList.children.length > 4) {
-      const showAll = document.createElement("button");
-      showAll.className = "field-notes-more button secondary";
-      showAll.type = "button";
-      showAll.textContent = "Show all Field Notes";
-      showAll.setAttribute("aria-expanded", "false");
-      showAll.addEventListener("click", () => {
-        const expanded = postList.classList.toggle("shows-all");
-        showAll.textContent = expanded ? "Show fewer Field Notes" : "Show all Field Notes";
-        showAll.setAttribute("aria-expanded", String(expanded));
+    const updatePosts = () => {
+      const filtered = posts.filter((post) => {
+        const isUnit = post.category.startsWith("Unit ");
+        return activeFilter === "all" || (activeFilter === "unit" ? isUnit : !isUnit);
       });
-      postList.after(showAll);
-    }
+      const visible = expanded || activeFilter !== "all" ? filtered : filtered.slice(0, 6);
+      postList.innerHTML = visible.map(renderCard).join("");
+      if (status) status.textContent = `${filtered.length} ${filtered.length === 1 ? "note" : "notes"}`;
+      showAll.hidden = filtered.length <= 6 || activeFilter !== "all";
+      showAll.textContent = expanded ? "Show fewer notes" : `Show all ${filtered.length} notes`;
+      showAll.setAttribute("aria-expanded", String(expanded));
+    };
+
+    showAll.addEventListener("click", () => {
+      expanded = !expanded;
+      updatePosts();
+    });
+    postList.after(showAll);
+
+    filterButtons.forEach((button) => button.addEventListener("click", () => {
+      activeFilter = button.dataset.fieldFilter;
+      expanded = false;
+      filterButtons.forEach((candidate) => {
+        const isActive = candidate === button;
+        candidate.classList.toggle("is-active", isActive);
+        candidate.setAttribute("aria-pressed", String(isActive));
+      });
+      updatePosts();
+    }));
+    updatePosts();
   } catch (error) {
-    featuredTarget.innerHTML = `
-      <div class="field-featured-post__body">
-        <p class="eyebrow">Field Notes</p>
-        <h2>Notes are unavailable in this preview.</h2>
-        <p>Check the Field Notes feed file or reload the page.</p>
-      </div>
-    `;
+    postList.innerHTML = '<p class="field-notes-error">Field Notes are temporarily unavailable. Please reload the page.</p>';
+  }
+});
+
+document.querySelectorAll("[data-field-note-reader]").forEach(async (reader) => {
+  const target = reader.querySelector("[data-field-note-content]");
+  const noteId = new URLSearchParams(window.location.search).get("note");
+  if (!target || !noteId) {
+    window.location.replace("./field-notes.html");
+    return;
   }
 
-  layoutButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const layout = button.dataset.fieldLayout;
-      postList.classList.toggle("is-grid", layout === "grid");
-      postList.classList.toggle("is-list", layout === "list");
-      layoutButtons.forEach((layoutButton) => {
-        const isActive = layoutButton === button;
-        layoutButton.classList.toggle("is-active", isActive);
-        layoutButton.setAttribute("aria-pressed", String(isActive));
-      });
-    });
-  });
+  const escapeHtml = (value = "") => String(value)
+    .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+
+  try {
+    const response = await fetch(reader.dataset.feed, { cache: "no-store" });
+    if (!response.ok) throw new Error("Field Notes feed failed");
+    const feed = await response.json();
+    const post = feed.posts?.find((candidate) => candidate.id === noteId);
+    if (!post) throw new Error("Field Note not found");
+
+    document.title = `${post.title} - Torch & Trowel`;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", post.excerpt);
+    target.innerHTML = `
+      <header class="field-note-reader__header">
+        <a class="article-back-link" href="./field-notes.html">Field Notes</a>
+        <p class="eyebrow">${escapeHtml(post.category)}</p>
+        <h1>${escapeHtml(post.title)}</h1>
+        <p class="article-deck">${escapeHtml(post.excerpt)}</p>
+        <p class="field-note-reader__time">${escapeHtml(post.readTime)}</p>
+      </header>
+      <img class="field-note-reader__image" src="${escapeHtml(post.image)}" alt="${escapeHtml(post.imageAlt)}">
+      <div class="field-note-reader__body">
+        <aside><strong>Use this when</strong><p>${escapeHtml(post.when)}</p></aside>
+        <h2>Try this</h2>
+        <ol>${post.tryThis.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol>
+        <h2>Why it helps</h2>
+        <p>${escapeHtml(post.why)}</p>
+        <blockquote><p>${escapeHtml(post.script)}</p></blockquote>
+      </div>
+      <footer class="article-footer-cta">
+        <p class="eyebrow">Put it into practice</p>
+        <h2>Try the lesson at your table.</h2>
+        <div class="sales-actions"><a class="button component-button primary" href="./free-drawing-lesson.html">Get the Free Lesson</a><a class="button component-button secondary" href="./drawing-field-kit.html">See the Field Kit</a></div>
+      </footer>`;
+  } catch (error) {
+    target.innerHTML = '<div class="field-note-reader__missing"><h1>That Field Note could not be found.</h1><a class="button secondary" href="./field-notes.html">Return to Field Notes</a></div>';
+  }
 });
 
 const previewTriggers = document.querySelectorAll("[data-preview-src]");

@@ -7,6 +7,327 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Keep the streamlined Field Notes controls above legacy component rules. */
+.field-notes-page .field-feed-header {
+  display: block;
+}
+
+.field-notes-page .field-notes-more {
+  display: flex;
+}
+
+.field-notes-page .field-notes-more[hidden] {
+  display: none;
+}
+
+/* Field Notes index and focused reader */
+.field-notes-page .field-notes-hero img {
+  background: var(--white);
+  object-fit: contain;
+  padding: 18px;
+}
+
+.field-article-card p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.field-notes-page .field-notes-feed {
+  margin-bottom: 48px;
+}
+
+.field-feed-header {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.field-feed-header p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.field-filter {
+  border-bottom: 1px solid rgba(184, 155, 54, 0.34);
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+  padding-bottom: 14px;
+  scrollbar-width: none;
+}
+
+.field-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.field-filter button {
+  background: transparent;
+  border: 1px solid rgba(47, 52, 64, 0.24);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  flex: 0 0 auto;
+  font: 900 14px/1 var(--font-sans);
+  min-height: 42px;
+  padding: 0 17px;
+}
+
+.field-filter button.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+.field-results-status {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+}
+
+.field-posts.field-notes-index {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field-index-card {
+  background: var(--paper);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--ink);
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  min-height: 260px;
+  overflow: hidden;
+}
+
+.field-index-card img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.field-index-card > div {
+  align-content: start;
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+}
+
+.field-index-card__meta {
+  color: var(--gold);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 11px !important;
+  font-weight: 900;
+  gap: 7px 12px;
+  text-transform: uppercase;
+}
+
+.field-index-card h3 {
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.12;
+}
+
+.field-index-card p:not(.field-index-card__meta) {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.field-index-card strong {
+  align-self: end;
+  color: var(--ink);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.field-notes-more {
+  display: flex;
+  margin: 24px auto 0;
+}
+
+.field-notes-more[hidden] {
+  display: none;
+}
+
+.field-feed-footer {
+  color: var(--muted);
+  font-size: 13px;
+  margin: -24px auto 64px;
+  max-width: var(--max);
+  padding: 0 16px;
+  text-align: center;
+}
+
+.field-feed-footer a {
+  color: var(--ink);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.field-note-reader {
+  padding: 58px 16px 100px;
+}
+
+.field-note-reader__shell {
+  margin: 0 auto;
+  max-width: 820px;
+}
+
+.field-note-reader__header h1 {
+  color: var(--ink);
+  font-size: 54px;
+  line-height: 1.02;
+  margin-top: 10px;
+}
+
+.field-note-reader__time {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 18px;
+  text-transform: uppercase;
+}
+
+.field-note-reader__image {
+  background: var(--paper);
+  border-radius: 8px;
+  height: 420px;
+  margin-top: 34px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.field-note-reader__body {
+  color: var(--ink);
+  margin: 44px auto 0;
+  max-width: 680px;
+}
+
+.field-note-reader__body p,
+.field-note-reader__body li {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.field-note-reader__body h2 {
+  font-size: 30px;
+  margin: 36px 0 12px;
+}
+
+.field-note-reader__body ol {
+  display: grid;
+  gap: 12px;
+  padding-left: 24px;
+}
+
+.field-note-reader__body aside {
+  background: rgba(255, 214, 22, 0.2);
+  border-left: 4px solid var(--gold);
+  padding: 20px 22px;
+}
+
+.field-note-reader__body aside strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.field-note-reader__body blockquote {
+  border-left: 4px solid var(--gold);
+  margin: 38px 0 0;
+  padding: 4px 0 4px 22px;
+}
+
+.field-note-reader__body blockquote p {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  line-height: 1.35;
+}
+
+.field-note-reader .article-footer-cta {
+  margin-top: 64px;
+}
+
+.field-note-reader__missing {
+  min-height: 40vh;
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .field-index-card {
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  }
+
+  .field-index-card:hover {
+    border-color: rgba(184, 155, 54, 0.42);
+    box-shadow: 0 12px 24px rgba(16, 24, 35, 0.09);
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 760px) {
+  .field-posts.field-notes-index {
+    grid-template-columns: 1fr;
+  }
+
+  .field-index-card {
+    grid-template-columns: 112px minmax(0, 1fr);
+    min-height: 220px;
+  }
+
+  .field-index-card > div {
+    padding: 18px;
+  }
+
+  .field-index-card h3 {
+    font-size: 19px;
+  }
+
+  .field-notes-page .field-notes-hero {
+    text-align: left;
+  }
+
+  .field-notes-page .field-notes-hero img {
+    height: 260px;
+  }
+
+  .field-note-reader {
+    padding-top: 36px;
+  }
+
+  .field-note-reader__header h1 {
+    font-size: 38px;
+  }
+
+  .field-note-reader__image {
+    height: 260px;
+    margin-top: 26px;
+  }
+
+  .field-note-reader__body {
+    margin-top: 32px;
+  }
+
+  .field-note-reader__body p,
+  .field-note-reader__body li {
+    font-size: 17px;
+  }
+
+  .field-note-reader__body blockquote p {
+    font-size: 22px;
+  }
+}
+
 /* Motion system: transitions.dev timing, tuned for Torch & Trowel. */
 @view-transition {
   navigation: auto;
